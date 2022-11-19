@@ -40,7 +40,18 @@ export class SubjectsComponent implements OnInit {
         this.positivePosts = [];
         this.negativePosts = [];
       }
-      
     });
   }
+  getPositiveNumber() {
+    return this.positivePosts.length;
+  }
+
+  geNegativeNumber() {
+    return this.negativePosts.length;
+  }
+
+  getAllNumber() {
+    return this.positivePosts.length + this.negativePosts.length;
+  }
+
 }

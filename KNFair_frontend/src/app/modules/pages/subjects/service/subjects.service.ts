@@ -19,8 +19,34 @@ export class SubjectsService {
     return this.http.get<Subcject[]>(`${this.baseUrl}/financialEntities/find/all`);
   }
 
-  getAllPosts(subjectId: string): Observable<Subcject[][]> {
-    return this.http.get<Subcject[][]>(`${this.baseUrl}/find/autoVerification`);
+  getAllPosts(subjectId: string): Observable<Post[][]> {
+    // return this.http.get<Post[][]>(`${this.baseUrl}/find/autoVerification`);
+    return of([
+      [
+        {id:'1',
+        facebookPostUrl: 'url1',
+        manualVerification: null,
+        autoVerification: true
+      },
+      {id:'2',
+        facebookPostUrl: 'url2',
+        manualVerification: null,
+        autoVerification: true
+      }
+      ],
+      [
+        {id:'3',
+        facebookPostUrl: 'url3',
+        manualVerification: null,
+        autoVerification: false
+      },
+      {id:'4',
+        facebookPostUrl: 'url4',
+        manualVerification: null,
+        autoVerification: false
+      }
+      ]
+    ]);
   }
 
  

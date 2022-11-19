@@ -49,16 +49,19 @@
                         </ng-template>
                     </p-table>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <div class="card" *ngIf="selectedSubcject">
-                        <div class="col-3 grid">
-                            <div class="col-6 label">Liczba pozytywnych weryfikacji:</div>
-                            <div class="col-6">20-11-2022 08:47</div>
-                            <div class="col-6 label">Liczba negatywnych weryfikacji:</div>
-                            <div class="col-6">{{getSubjectsNumber()}}</div>
-                            <div class="col-6 label">Liczba wszystkich:</div>
-                            <div class="col-6">{{getSubjectsNumber()}}</div>
-                        </div>
+                        <p-fieldset legend="Weryfikacje AI bez weryfikacji manulanej">
+                            <div class="col-12 grid">
+                                <div class="col-8 label">Liczba weryfikacji AI bez manualnej:</div>
+                                <div class="col-4">{{getAllNumber()}}</div>
+                                <div class="col-8 label positive">Liczba pozytywnych weryfikacji AI:</div>
+                                <div class="col-4 positive">{{getPositiveNumber()}}</div>
+                                <div class="col-8 label negative">Liczba negatywnych weryfikacji AI:</div>
+                                <div class="col-4 negative">{{geNegativeNumber()}}</div>
+                            </div>
+                        </p-fieldset>
+                        
                     </div>
                 </div>
             </div>
