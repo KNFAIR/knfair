@@ -6,7 +6,7 @@ import pl.hackyeah.msmfa.financialEntity.FinancialEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "facebook_post")
+@Table(name = "social_post")
 @Data
 public class SocialPostEntity {
 
@@ -14,8 +14,11 @@ public class SocialPostEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "facebook_post_url")
+    @Column(name = "social_post_url")
     private String facebookPostUrl;
+
+    @Column(name = "post_created_date")
+    private String postCreatedDate;
 
     @Column(name = "manual_verification")
     private Boolean manualVerification;
@@ -24,7 +27,6 @@ public class SocialPostEntity {
     private Boolean autoVerification;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "financial_entity_id")
     private FinancialEntity financialEntity;
 
 }
