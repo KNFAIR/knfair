@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/financialEntities")
 public class FinancialEntityController {
 
     @Autowired
@@ -20,19 +20,19 @@ public class FinancialEntityController {
     }
 
 
-    @GetMapping("/financialEntities/find/all")
+    @GetMapping("/find/all")
     public ResponseEntity<List<FinancialEntity>> getAllFinancialEntities() {
         List<FinancialEntity> financialEntities = financialEntityService.findAllFinancialEntities();
 
         return new ResponseEntity<>(financialEntities, HttpStatus.OK);
     }
 
-    @GetMapping("/financialEntities/find/{id}")
+    @GetMapping("/find/{id}")
     public FinancialEntity getFinancialEntityById(@PathVariable("id") Long id) {
         return financialEntityService.findById(id);
     }
 
-    @PostMapping("/financialEntities/add")
+    @PostMapping("/add")
     public ResponseEntity<FinancialEntity> addRestaurant(@RequestBody FinancialEntity financialEntity) {
         FinancialEntity newFinancialEntity = financialEntityService.addFinancialEntity(financialEntity);
         return new ResponseEntity<>(newFinancialEntity, HttpStatus.CREATED);
