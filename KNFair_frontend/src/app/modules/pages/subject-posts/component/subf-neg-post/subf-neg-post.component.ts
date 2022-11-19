@@ -12,6 +12,7 @@ export class SubfNegPostComponent implements OnInit {
 
   subject: Subcject;
   posts: Post[] = [];
+  selectedPost: Post;
   constructor(private service: SubjPostsService) { }
 
   ngOnInit(): void {

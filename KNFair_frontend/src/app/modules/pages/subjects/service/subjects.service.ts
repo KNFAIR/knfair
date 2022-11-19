@@ -24,11 +24,13 @@ export class SubjectsService {
     return of([
       [
         {id:'1',
+        postCreatedDate:'12-12-2022',
         facebookPostUrl: 'url1',
         manualVerification: null,
         autoVerification: true
       },
       {id:'2',
+      postCreatedDate:'12-12-2022',
         facebookPostUrl: 'url2',
         manualVerification: null,
         autoVerification: true
@@ -36,11 +38,13 @@ export class SubjectsService {
       ],
       [
         {id:'3',
+        postCreatedDate:'12-12-2022',
         facebookPostUrl: 'url3',
         manualVerification: null,
         autoVerification: false
       },
       {id:'4',
+      postCreatedDate:'12-12-2022',
         facebookPostUrl: 'url4',
         manualVerification: null,
         autoVerification: false

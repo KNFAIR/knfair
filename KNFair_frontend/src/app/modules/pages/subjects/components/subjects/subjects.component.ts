@@ -59,11 +59,13 @@ export class SubjectsComponent implements OnInit {
   }
 
   onPositives() {
+    console.log('neg')
     this.subjService.subj=this.selectedSubcject; 
     this.router.navigateByUrl("/subject/post/positive")
   }
 
   onNegatives() {
+    console.log('pos');
     this.subjService.subj=this.selectedSubcject; 
     this.router.navigateByUrl("/subject/post/negative")
   }

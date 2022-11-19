@@ -24,7 +24,6 @@
                         (onRowSelect)="onRowSelect($event)">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th>id</th>
                                 <th>
                                     <div class="flex justify-content-center align-items-center">
                                         Nazwa</div>
@@ -41,7 +40,6 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-subject>
                             <tr [pSelectableRow]="subject">
-                                <td>{{subject.id}}</td>
                                 <td>{{subject.financialEntityName}}</td>
                                 <td>{{subject.financialEntityNip}}</td>
                                 <td>{{subject.financialEntityType}}</td>
@@ -55,10 +53,10 @@
                             <div class="col-12 grid">
                                 <div class="col-8 label">Liczba weryfikacji AI bez manualnej:</div>
                                 <div class="col-4">{{getAllNumber()}}</div>
-                                <div class="col-8 label positive">Liczba pozytywnych weryfikacji AI:</div>
-                                <div class="col-4 positive">{{getPositiveNumber()}}</div>
-                                <div class="col-8 label negative">Liczba negatywnych weryfikacji AI:</div>
-                                <div class="col-4 negative">{{geNegativeNumber()}}</div>
+                                <div class="col-8 label positive" (click)="onPositives()">Liczba pozytywnych weryfikacji AI:</div>
+                                <div class="col-4 positive" (click)="onPositives()">{{getPositiveNumber()}}</div>
+                                <div class="col-8 label negative" (click)="onNegatives()">Liczba negatywnych weryfikacji AI:</div>
+                                <div class="col-4 negative" (click)="onNegatives()">{{geNegativeNumber()}}</div>
                             </div>
                         </p-fieldset>
                         

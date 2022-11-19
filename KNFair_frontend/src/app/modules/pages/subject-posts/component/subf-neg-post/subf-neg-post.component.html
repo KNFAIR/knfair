@@ -6,10 +6,19 @@
             <div class="grid">
                 <div class="col-6">
                    <p>Lista postów negatywnych</p>  
-                   <p-table [value]="subjects" responsiveLayout="scroll" *ngIf="subjects" [paginator]="true"
-                            [rows]="10" [(selection)]="selectedSubcject" dataKey="id" selectionMode="single"
-                            (onRowSelect)="onRowSelect($event)">
-                        
+                   <p-table [value]="posts" responsiveLayout="scroll" *ngIf="posts" [paginator]="true"
+                            [rows]="10" [(selection)]="selectedPost" dataKey="id" selectionMode="single"
+                            >
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Data publikacji posta</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-post>
+                                <tr [pSelectableRow]="post">
+                                    <td>{{post.postCreatedDate}}</td>
+                                </tr>
+                            </ng-template>
                    </p-table>
                 </div>
                 <div class="col-6">
