@@ -42,13 +42,22 @@ import {TestyComponent} from './modules/pages/test/testy/testy.component';
 import {SettingsComponent} from './modules/pages/settings/components/settings/settings.component';
 import {RegistrationMainComponent} from './modules/pages/registration/components/registration-main/registration-main.component';
 import {RegistrationLandlordComponent} from './modules/pages/registration/components/registration-landlord/registration-landlord.component';
+import {DashboardComponent} from './modules/pages/dashboard/components/dashboard/dashboard.component';
+import { SubjectsComponent } from './modules/pages/subjects/components/subjects/subjects.component';
 
 const route: Routes = [
     {
         path: '', component: AppMainComponent,
         children: [
-            {path: '', component: DashboardDemoComponent},
+            {path: '', component: DashboardComponent},
+            {path: 'dashboard', component: DashboardDemoComponent},
             {path: 'settings', component: SettingsComponent},
+            {path: 'subject', component: SubjectsComponent},
+            {path: 'subject/post', component: SettingsComponent},
+
+
+
+
             {path: 'registration', component: RegistrationMainComponent},
                 // children: [
                 //     { path: 'landlord', component: RegistrationLandlordComponent }
