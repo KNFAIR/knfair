@@ -3,9 +3,7 @@ package pl.hackyeah.msmfa.financialEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FinancialEntityService {
@@ -23,9 +21,7 @@ public class FinancialEntityService {
         return financialEntities;
     }
 
-    public Optional<FinancialEntity> findById(Long id) {
-
-        Optional<FinancialEntity> financialEntity = Optional.ofNullable(Optional.ofNullable(financialEntityRepository.getById(id)).orElseThrow(() -> new EntityNotFoundException("nie znaleziono podmiotu finansowego z id: " + id)));
-        return financialEntity;
+    public FinancialEntity findById(Long id) {
+        return financialEntityRepository.findById(id).get();
     }
 }

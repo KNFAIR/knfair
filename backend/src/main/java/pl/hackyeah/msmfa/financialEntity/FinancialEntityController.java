@@ -31,7 +31,7 @@ public class FinancialEntityController {
     }
 
     @GetMapping("/financialEntities/find/{id}")
-    public Optional<FinancialEntity> getFinancialEntityById(@PathVariable("id") Long id) {
+    public FinancialEntity getFinancialEntityById(@PathVariable("id") Long id) {
         return financialEntityService.findById(id);
     }
 }
