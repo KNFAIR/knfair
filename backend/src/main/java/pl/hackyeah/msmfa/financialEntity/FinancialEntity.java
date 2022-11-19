@@ -20,7 +20,7 @@ public class FinancialEntity {
     private String financialEntityShortName;
 
     @Column(name = "fe_nip")
-    private Long financialEntityNip;
+    private String financialEntityNip;
 
     @Column(name = "fe_type")
     private String financialEntityType;
