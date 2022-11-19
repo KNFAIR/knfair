@@ -9,7 +9,7 @@ import { Subcject } from '../model/subcject';
 })
 export class SubjectsService {
 
-  private baseUrl = `${environment.baseUrl}/api`;
+  private baseUrl = `${environment.baseUrl}`;
 
   constructor(private http: HttpClient) {
    }

@@ -9,13 +9,34 @@
                     <div class="col-3 grid">
                         <div class="col-6">Ostatni upload listy:</div>
                         <div class="col-6">20-11-2022 08:47</div>
-                        <div class="col-6">Ilość podiomtów:</div>
+                        <div class="col-6">Liczba podiomtów:</div>
                         <div class="col-6">{{getSubjectsNumber()}}</div>
                         <div class="col-6">Upload nowej listy</div>
                         <div class="col-6">
-                            
+                            <!-- <p-fileUpload mode="basic" name="subjects[]" url="./upload.php" accept="csv/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload> -->
                         </div>
                     </div>
+                </div>
+                <div class="col-12">
+                    <p-table [value]="subjects" responsiveLayout="scroll"
+                            [paginator]="true" [rows]="10" responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Nazwa</th>
+                                <th>Skrócona nazwa</th>
+                                <th>NIP</th>
+                                <th>Typ</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-subject>
+                            <tr>
+                                <td>{{subject.financialEntityName}}</td>
+                                <td>{{subject.financialEntityShortName}}</td>
+                                <td>{{subject.financialEntityNip}}</td>
+                                <td>{{subject.financialEntityType}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
                 </div>
             </div>
         </div>
