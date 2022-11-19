@@ -1,4 +1,4 @@
-package pl.hackyeah.msmfa.financialEntities;
+package pl.hackyeah.msmfa.financialEntity;
 
 import lombok.Data;
 
