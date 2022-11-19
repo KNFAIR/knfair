@@ -4,7 +4,7 @@ import numpy as np
 
 
 def createDetector():
-      detector = cv2.ORB_create(nfeatures=2000)
+      detector = cv2.ORB_create(nfeatures=4000)
       return detector
 
 
@@ -65,7 +65,7 @@ train_features = getFeatures(img)
 cv2.imshow("tets", img)   
 
 # detect features on test image
-img2 = cv2.imread('pzu/test2.jpg')
+img2 = cv2.imread('pzu/test3.jpg')
 region = detectFeatures(img2, train_features)
 if region is not None:
     # draw rotated bounding box
