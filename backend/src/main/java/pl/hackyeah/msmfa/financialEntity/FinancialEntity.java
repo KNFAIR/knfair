@@ -25,6 +25,12 @@ public class FinancialEntity {
     @Column(name = "fe_type")
     private String financialEntityType;
 
+    @Column(name = "manual_verification")
+    private Boolean manualVerification;
+
+    @Column(name = "auto_verification")
+    private Boolean autoVerification;
+
 
 
 }
