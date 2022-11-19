@@ -19,7 +19,7 @@ public class FinancialEntityController {
         this.financialEntityService = financialEntityService;
     }
 
-
+    @CrossOrigin
     @GetMapping("/find/all")
     public ResponseEntity<List<FinancialEntity>> getAllFinancialEntities() {
         List<FinancialEntity> financialEntities = financialEntityService.findAllFinancialEntities();
@@ -27,11 +27,13 @@ public class FinancialEntityController {
         return new ResponseEntity<>(financialEntities, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping("/find/{id}")
     public FinancialEntity getFinancialEntityById(@PathVariable("id") Long id) {
         return financialEntityService.findById(id);
     }
 
+    @CrossOrigin
     @PostMapping("/add")
     public ResponseEntity<FinancialEntity> addFinancialEntity(@RequestBody FinancialEntity financialEntity) {
         FinancialEntity newFinancialEntity = financialEntityService.addFinancialEntity(financialEntity);

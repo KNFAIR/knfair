@@ -16,4 +16,10 @@ public class SocialPostEntity {
     @Column(name = "facebook_post_url")
     private String facebookPostUrl;
 
+    @Column(name = "manual_verification")
+    private Boolean manualVerification;
+
+    @Column(name = "auto_verification")
+    private Boolean autoVerification;
+
 }

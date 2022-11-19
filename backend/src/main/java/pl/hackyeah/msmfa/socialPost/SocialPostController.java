@@ -18,17 +18,20 @@ public class SocialPostController {
         this.socialPostService = socialPostService;
     }
 
+    @CrossOrigin
     @GetMapping("/find/all")
     public ResponseEntity<List<SocialPostEntity>> getAllSocialPosts() {
         List<SocialPostEntity> socialPosts = socialPostService.findAllSocialPosts();
         return new ResponseEntity<>(socialPosts, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping("/find/{id}")
     public SocialPostEntity getSocialPostById(@PathVariable("id") Long id) {
         return socialPostService.findById(id);
     }
 
+    @CrossOrigin
     @PostMapping("/add")
     public ResponseEntity<SocialPostEntity> addSocialPost(@RequestBody SocialPostEntity socialPost) {
         SocialPostEntity newSocialPost = socialPostService.addSocialPost(socialPost);
