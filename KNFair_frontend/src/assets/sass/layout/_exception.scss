@@ -1,167 +1,130 @@
 .exception-body {
-    height: 100%;
-    background-position: center;
+    background-image: $exceptionPagesImage;
     background-repeat: no-repeat;
-    background-size: cover;
-
-    &.error {
-        background-image: url("../images/exception/error-bg.jpg");
-
-        .exception-panel {
-            .exception-code {
-                background-color: #e91e63;
-
-                img {
-                    margin-left: -194px;
-                }
-            }
-
-            .exception-icon {
-                background-color: #e91e63;
-            }
-        }
-    }
+    background-size: contain;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
     &.notfound {
-        background-image: url("../images/exception/notfound-bg.jpg");
-
         .exception-panel {
-            .exception-code {
-                background-color: #e91e63;
-
-                img {
-                    margin-left: -206px;
-                }
+            h1 {
+                color: #0F8BFD;
+                text-shadow: 0px 0px 50px rgba(#0F8BFD, 0.2);
             }
 
-            .exception-icon {
-                background-color: #e91e63;
+            h3 {
+                color: darken(#0F8BFD, 30%);
             }
         }
     }
 
     &.accessdenied {
-        background-image: url("../images/exception/access-bg.jpg");
-
         .exception-panel {
-            .exception-code {
-                background-color: #ffb300;
-
-                img {
-                    margin-left: -178px;
-                }
+            h1 {
+                color: #0F8BFD;
+                text-shadow: 0px 0px 50px rgba(#0F8BFD, 0.2);
             }
 
-            .exception-icon {
-                background-color: #ffb300;
+            h3 {
+                color: darken(#0F8BFD, 30%);
+            }
+        }
+    }
+
+    &.error {
+        .exception-panel {
+            h1 {
+                color: #FC6161;
+                text-shadow: 0px 0px 50px rgba(#FC6161, 0.2);
+            }
+
+            h3 {
+                color: lighten(#FC6161, 10%);
+                max-width: 720px;
             }
         }
     }
 
     .exception-panel {
-        width: 550px;
-        height: 480px;
-        background-color: #ffffff;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        margin-left: -275px;
-        margin-top: -240px;
-        padding: 0;
         text-align: center;
-        @include border-radius(2px);
-        @include multi-shadow(0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 6px 10px 0 rgba(0, 0, 0, 0.14));
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: -200px;
 
-        .exception-code {
-            height: 240px;
-            position: relative;
-
-            img {
-                position: absolute;
-                bottom: 0;
-                height: 190px;
-                left: 50%;
-            }
+        h1 {
+            font-size: 140px;
+            font-weight: 900;
+            margin-bottom: 0;
         }
 
-        .exception-detail {
-            height: 240px;
-            position: relative;
-            padding: 60px 0 0 0;
+        h3 {
+            font-size: 80px;
+            font-weight: 900;
+            margin-top: -90px;
+            margin-bottom: 50px;
+        }
 
-            .exception-icon {
-                width: 90px;
-                height: 90px;
-                line-height: 90px;
-                text-align: center;
-                display: inline-block;
-                z-index: 100;
-                position: absolute;
-                top: -45px;
-                left: 50%;
-                margin-left: -45px;
-                @include border-radius(50%);
-                @include multi-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.12), 0 0 1px 0 rgba(0, 0, 0, 0.14));
+        p {
+            font-size: 24px;
+            font-weight: 400;
+            max-width: 320px;
+        }
 
-                i {
-                    font-size: 45px;
-                    line-height: inherit;
-                    color: #ffffff;
-                }
-            }
+        button {
+            margin-top: 50px;
+        }
+    }
 
-            h1 {
-                font-size: 15px;
-                font-weight: bold;
-                margin: 10px 0 8px 0;
-            }
+    .exception-footer {
+        position: absolute;
+        bottom: 60px;
+        align-items: center;
+        display: flex;
 
-            p {
-                color: $textSecondaryColor;
-                margin: 0 0 60px 0;
-            }
+        .exception-logo {
+            width: 34px;
+        }
+
+        .exception-appname {
+            width: 72px;
+            margin-left: 1rem;
         }
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: $phoneBreakpoint) {
     .exception-body {
+        background-size: auto;
+
+        &.accessdenied, &.error {
+            .exception-panel {
+                h1 {
+                    font-size: 70px;
+                }
+
+                h3 {
+                    font-size: 40px;
+                    margin-top: -30px;
+                }
+            }
+        }
+
         .exception-panel {
-            left: 0;
-            margin-left: 0;
-            width: 100%;
-        }
-        
-        &.error {
-            .exception-panel {
-                .exception-code {
-                    img {
-                        height: 150px;
-                        margin-left: -150px;
-                    }
-                }
-            }
-        }
+            margin-top: 0;
 
-        &.notfound {
-            .exception-panel {
-                .exception-code {
-                    img {
-                        height: 150px;
-                        margin-left: -163px;
-                    }
-                }
+            h3 {
+                line-height: .75;
             }
-        }
 
-        &.accessdenied {
-            .exception-panel {
-                .exception-code {
-                    img {
-                        height: 150px;
-                        margin-left: -141px;
-                    }
-                }
+            button {
+                margin-top: 0;
             }
         }
     }

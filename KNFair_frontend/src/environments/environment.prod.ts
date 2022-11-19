@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  base_url: 'http://localhost:9186/api/admin-ui'
+    production: true,
+    baseUrl: 'http://localhost:8080/rentlee/api/rest',
 };

@@ -1,0 +1,32 @@
+<div class="grid">
+    <div class="col-12 md:col-6">
+        <div class="card">
+            <h5>{{ TRANSLATE_KEY.STYLES | translate}}</h5>
+            <div class="field-radiobutton">
+                <p-radioButton name="theme" value="light" [(ngModel)]="app.colorScheme" id="theme-light"
+                               (onClick)="changeColorScheme('light')">
+                </p-radioButton>
+                <label for="theme-light">{{TRANSLATE_KEY.STYLE_LIGHT | translate}}</label>
+            </div>
+            <div class="field-radiobutton">
+                <p-radioButton name="theme" value='dark' [(ngModel)]="app.colorScheme" id="theme-dark"
+                               (onClick)="changeColorScheme('dark')">
+                </p-radioButton>
+                <label for="theme-dark">{{TRANSLATE_KEY.STYLE_DARK | translate}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 md:col-6">
+        <div class="card">
+            <h5>{{TRANSLATE_KEY.LANGUAGE | translate}}</h5>
+            <p-dropdown inputId="language" [options]="languages" [(ngModel)]="selectedLanguage"
+                        placeholder="Select" optionLabel="name" (onChange)="changeLanguage($event)"></p-dropdown>
+        </div>
+    </div>
+    <div class="col-12 md:col-6">
+        <div class="card">
+            <h5>{{TRANSLATE_KEY.NOTIFICATIONS | translate}}</h5>
+            <p></p>
+        </div>
+    </div>
+</div>

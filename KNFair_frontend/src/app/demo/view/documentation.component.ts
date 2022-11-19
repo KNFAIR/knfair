@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BreadcrumbService} from '../../modules/core/service/breadcrumb.service';
+import {AppBreadcrumbService} from '../../modules/core/service/app.breadcrumb.service';
 
 @Component({
     templateUrl: './documentation.component.html',
@@ -8,7 +8,7 @@ import {BreadcrumbService} from '../../modules/core/service/breadcrumb.service';
             margin-top: 30px;
         }
 
-        .docs pre {
+        .docs pre.doc-command {
             font-family: monospace;
             background-color: #0C2238;
             color: #dddddd;
@@ -16,20 +16,15 @@ import {BreadcrumbService} from '../../modules/core/service/breadcrumb.service';
             font-size: 14px;
             border-radius: 3px;
             overflow: auto;
-        }
-
-        .docs p {
-            line-height: 1.5;
-        }
-        `
+        }`
     ]
 })
 export class DocumentationComponent {
 
-    constructor(private breadcrumbService: BreadcrumbService) {
+    constructor(private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
-            {label: 'Documentation'}
+            { label: 'Start' },
+            { label: 'Documentation', routerLink: ['/documentation'] }
         ]);
     }
-
 }

@@ -1,0 +1,85 @@
+<div class="grid justify-content-center">
+    <div class="col-12 md:col-6">
+        <div class="card">
+            <h5>{{ TRANSLATE_KEY.PERSONAL_DATA | translate}}</h5>
+
+            <form [formGroup]="personalDataForm">
+                <div class="grid">
+                    <!-- personal data -->
+                    <div class="col-6">
+                        <p-image class="landlord-avatar" src="assets/demo/images/galleria/galleria10.jpg" alt="Avatar" height="215" ></p-image>
+                    </div>
+                    <div class="col-6 grid">
+                        <div class="field col-12">
+                            <span class="p-float-label float-input">
+                                <input type="text" id="landlord-name" pInputText formControlName="name">
+                                <label for="landlord-name">{{TRANSLATE_KEY.NAME | translate}}</label>
+                            </span>
+                        </div>
+                        <div class="field col-12">
+                            <span class="p-float-label float-input">
+                                <input type="text" id="landlord-surname" pInputText formControlName="surname">
+                                <label for="landlord-surname">{{TRANSLATE_KEY.SURNAME | translate}}</label>
+                            </span>
+                        </div>
+                        <div class="field col-12">
+                            <span class="p-float-label float-input">
+                                <input type="text" id="landlord-email" pInputText formControlName="email">
+                                <label for="landlord-email">{{TRANSLATE_KEY.EMAIL | translate}}</label>
+                            </span>
+                        </div>
+                        <div class="field col-12">
+                            <span class="p-float-label float-input">
+                                <input type="text" id="landlord-phone" pInputText formControlName="phone">
+                                <label for="landlord-phone">{{TRANSLATE_KEY.PHONE | translate}}</label>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 empty">
+                        <h5>{{ TRANSLATE_KEY.ADDRESS | translate}}</h5>
+                    </div>
+                    <!-- Address -->
+                    <div class="col-6 place-icon">
+                        <i class="fa fa-building-o"></i>
+                        <fa-icon [icon]="hotelIcon" class="icon" ></fa-icon>
+                    </div>
+                    <div class="col-6 grid">
+                        <div class="field col-8">
+                            <span class="p-float-label float-input">
+                                <input type="text" id="address-street" pInputText formControlName="street">
+                                <label for="address-street">{{TRANSLATE_KEY.STREET | translate}}</label>
+                            </span>
+                        </div>
+                        <div class="field col-4">
+                            <span class="p-float-label float-input">
+                                <input type="text" id="address-home-no" pInputText formControlName="homeNo">
+                                <label for="address-home-no">{{TRANSLATE_KEY.HOME_NO | translate}}</label>
+                            </span>
+                        </div>
+                        <div class="field col-4">
+                            <span class="p-float-label float-input">
+                                <input type="text" id="address-zip-code" pInputText formControlName="zipCode">
+                                <label for="address-zip-code">{{TRANSLATE_KEY.ZIP_CODE | translate}}</label>
+                            </span>
+                        </div>
+                        <div class="field col-8">
+                            <span class="p-float-label float-input">
+                                <input type="text" id="address-city" pInputText formControlName="city">
+                                <label for="address-city">{{TRANSLATE_KEY.CITY | translate}}</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-12 buttons grid">
+                        <div class="col-12 buttons">
+                            <button (click)="onSave()" pButton pRipple type="button" label="{{TRANSLATE_KEY.SUBMIT | translate}}" class="mr-2 mb-2"></button>
+                            <button (click)="onCancel()" pButton pRipple type="button" label="{{TRANSLATE_KEY.CANCEL | translate}}" class="p-button-secondary mr-2 mb-2" ></button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

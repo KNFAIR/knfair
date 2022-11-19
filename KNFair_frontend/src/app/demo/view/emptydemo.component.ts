@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
-import {BreadcrumbService} from '../../modules/core/service/breadcrumb.service';
+import {AppBreadcrumbService} from '../../modules/core/service/app.breadcrumb.service';
 
 @Component({
     templateUrl: './emptydemo.component.html'
 })
 export class EmptyDemoComponent {
 
-    constructor(private breadcrumbService: BreadcrumbService) {
+    constructor(private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
-            {label: 'Empty Page'},
+            { label: 'Pages' },
+            { label: 'Empty Page', routerLink: ['/pages/empty'] }
         ]);
     }
-
 }

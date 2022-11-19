@@ -1,0 +1,22 @@
+<div class="grid justify-content-center">
+    <div class="col-12 md:col-6">
+        <div class="card">
+            <h5>{{ TRANSLATE_KEY.REGISTRATION | translate}}</h5>
+            <div class="grid">
+                <div class="col-6 option-panel">
+                    <div class="card" (click)="registerLandlord()">
+                        <p>{{TRANSLATE_KEY.REGISTRATION_AS_LANDLORD | translate}}</p>
+                        <fa-icon [icon]="landlordIcon" class="icon"></fa-icon>
+                    </div>
+                </div>
+                <div class="col-6 option-panel">
+                    <div class="card" (click)="registerTenant()">
+                        <p>{{TRANSLATE_KEY.REGISTRATION_AS_TENANT | translate}}</p>
+                        <fa-icon [icon]="tenantIcon" class="icon"></fa-icon>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

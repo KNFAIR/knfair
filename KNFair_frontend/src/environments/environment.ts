@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  base_url: 'http://localhost:32168/api/admin-ui'
+  baseUrl: 'http://localhost:8080/rentlee/api/rest',
 };

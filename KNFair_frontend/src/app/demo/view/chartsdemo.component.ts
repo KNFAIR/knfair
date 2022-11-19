@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {BreadcrumbService} from '../../modules/core/service/breadcrumb.service';
 
 @Component({
     templateUrl: './chartsdemo.component.html'
@@ -16,12 +15,15 @@ export class ChartsDemoComponent implements OnInit {
 
     radarData: any;
 
-    constructor(private breadcrumbService: BreadcrumbService) {
-        this.breadcrumbService.setItems([
-            {label: 'Components'},
-            {label: 'Charts', routerLink: ['/chart']}
-        ]);
-    }
+    lineOptions: any;
+
+    barOptions: any;
+
+    pieOptions: any;
+
+    polarOptions: any;
+
+    radarOptions: any;
 
     ngOnInit() {
         this.lineData = {
@@ -31,15 +33,47 @@ export class ChartsDemoComponent implements OnInit {
                     label: 'First Dataset',
                     data: [65, 59, 80, 81, 56, 55, 40],
                     fill: false,
-                    borderColor: '#03A9F4'
+                    backgroundColor: 'rgb(255, 205, 86)',
+                    borderColor: 'rgb(255, 205, 86)',
+                    tension: .4
                 },
                 {
                     label: 'Second Dataset',
                     data: [28, 48, 40, 19, 86, 27, 90],
                     fill: false,
-                    borderColor: '#FFC107'
+                    backgroundColor: 'rgb(75, 192, 192)',
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: .4
                 }
             ]
+        };
+
+        this.lineOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
         };
 
         this.barData = {
@@ -47,36 +81,70 @@ export class ChartsDemoComponent implements OnInit {
             datasets: [
                 {
                     label: 'My First dataset',
-                    backgroundColor: '#03A9F4',
-                    borderColor: '#03A9F4',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
                     data: [65, 59, 80, 81, 56, 55, 40]
                 },
                 {
                     label: 'My Second dataset',
-                    backgroundColor: '#FFC107',
-                    borderColor: '#FFC107',
+                    backgroundColor: 'rgb(54, 162, 235)',
+                    borderColor: 'rgb(54, 162, 235)',
                     data: [28, 48, 40, 19, 86, 27, 90]
                 }
             ]
+        };
+
+        this.barOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#A0A7B5'
+                    },
+                    grid: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
         };
 
         this.pieData = {
             labels: ['A', 'B', 'C'],
             datasets: [
                 {
-                    data: [300, 50, 100],
+                    data: [540, 325, 702, 421],
                     backgroundColor: [
-                        '#FFC107',
-                        '#03A9F4',
-                        '#4CAF50'
-                    ],
-                    hoverBackgroundColor: [
-                        '#FFE082',
-                        '#81D4FA',
-                        '#A5D6A7'
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)'
                     ]
                 }]
-            };
+        };
+
+        this.pieOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            }
+        };
 
         this.polarData = {
             datasets: [{
@@ -84,25 +152,39 @@ export class ChartsDemoComponent implements OnInit {
                     11,
                     16,
                     7,
-                    3,
-                    14
+                    3
                 ],
                 backgroundColor: [
-                    '#FFC107',
-                    '#03A9F4',
-                    '#4CAF50',
-                    '#E91E63',
-                    '#9C27B0'
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)'
                 ],
                 label: 'My dataset'
             }],
             labels: [
-                'Red',
-                'Green',
-                'Yellow',
-                'Grey',
-                'Blue'
+                'Blue',
+                'Purple',
+                'Orange',
+                'Green'
             ]
+        };
+
+        this.polarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
         };
 
         this.radarData = {
@@ -110,25 +192,42 @@ export class ChartsDemoComponent implements OnInit {
             datasets: [
                 {
                     label: 'My First dataset',
-                    backgroundColor: 'rgba(179,181,198,0.2)',
-                    borderColor: 'rgba(179,181,198,1)',
-                    pointBackgroundColor: 'rgba(179,181,198,1)',
+                    backgroundColor: 'rgba(54, 162, 235,0.2)',
+                    borderColor: 'rgba(54, 162, 235,1)',
+                    pointBackgroundColor: 'rgba(54, 162, 235,1)',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(179,181,198,1)',
+                    pointHoverBorderColor: 'rgba(54, 162, 235,1)',
                     data: [65, 59, 90, 81, 56, 55, 40]
                 },
                 {
                     label: 'My Second dataset',
-                    backgroundColor: 'rgba(255,99,132,0.2)',
-                    borderColor: 'rgba(255,99,132,1)',
-                    pointBackgroundColor: 'rgba(255,99,132,1)',
+                    backgroundColor: 'rgba(255, 99, 132,0.2)',
+                    borderColor: 'rgba(255, 99, 132,1)',
+                    pointBackgroundColor: 'rgba(255, 99, 132,1)',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(255,99,132,1)',
+                    pointHoverBorderColor: 'rgba(255, 99, 132,1)',
                     data: [28, 48, 40, 19, 96, 27, 100]
                 }
             ]
+        };
+
+        this.radarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#A0A7B5'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
         };
     }
 }
