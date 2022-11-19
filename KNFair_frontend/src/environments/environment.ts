@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/rentlee/api/rest',
+  baseUrl: 'http://65.21.189.224:8080/api',
 };
