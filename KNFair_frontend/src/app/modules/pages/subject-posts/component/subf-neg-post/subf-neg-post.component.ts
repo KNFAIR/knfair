@@ -16,7 +16,11 @@ export class SubfNegPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.subject = this.service.subj;
-    this.service = 
+    this.service.getPosts(this.subject.id).subscribe(response => {
+      this.posts = response[1];
+    });
+
+
   }
 
 
