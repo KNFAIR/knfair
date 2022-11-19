@@ -33,7 +33,7 @@ public class FinancialEntityController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<FinancialEntity> addRestaurant(@RequestBody FinancialEntity financialEntity) {
+    public ResponseEntity<FinancialEntity> addFinancialEntity(@RequestBody FinancialEntity financialEntity) {
         FinancialEntity newFinancialEntity = financialEntityService.addFinancialEntity(financialEntity);
         return new ResponseEntity<>(newFinancialEntity, HttpStatus.CREATED);
     }
