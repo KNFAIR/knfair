@@ -1,5 +1,5 @@
 export class Subcject {
-    id: number;
+    id: string;
     financialEntityName: string;
     financialEntityShortName: string;
     financialEntityNip: string;

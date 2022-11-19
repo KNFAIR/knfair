@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Post } from '../../model/post';
 import { Subcject } from '../../model/subcject';
 import { SubjectsService } from '../../service/subjects.service';
 
@@ -10,8 +11,10 @@ import { SubjectsService } from '../../service/subjects.service';
 })
 export class SubjectsComponent implements OnInit {
 
-  subjects: Subcject[];
+  subjects: Subcject[] = [];
   selectedSubcject: Subcject;
+  negativePosts: Post[] = [];
+  positivePosts: Post[] = [];
 
   constructor(private service: SubjectsService) { }
 
@@ -29,6 +32,15 @@ export class SubjectsComponent implements OnInit {
   }
   onRowSelect(selected: Subcject) {
     this.selectedSubcject = selected;
-    this.service.getAllPosts()
+    this.service.getAllPosts(selected.id).subscribe(response => {
+      if(response){
+        this.positivePosts = response[0];
+        this.negativePosts = response[1];
+      } else {
+        this.positivePosts = [];
+        this.negativePosts = [];
+      }
+      
+    });
   }
 }
