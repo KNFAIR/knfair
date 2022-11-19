@@ -28,4 +28,11 @@ public class SocialPostController {
     public SocialPostEntity getSocialPostById(@PathVariable("id") Long id) {
         return socialPostService.findById(id);
     }
+
+    @PostMapping("/add")
+    public ResponseEntity<SocialPostEntity> addSocialPost(@RequestBody SocialPostEntity socialPost) {
+        SocialPostEntity newSocialPost = socialPostService.addSocialPost(socialPost);
+        return new ResponseEntity<>(newSocialPost, HttpStatus.CREATED);
+    }
+
 }
