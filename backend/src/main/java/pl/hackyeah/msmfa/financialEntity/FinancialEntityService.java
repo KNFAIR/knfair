@@ -24,4 +24,8 @@ public class FinancialEntityService {
     public FinancialEntity findById(Long id) {
         return financialEntityRepository.findById(id).get();
     }
+
+    public FinancialEntity addFinancialEntity(FinancialEntity financialEntity) {
+        return financialEntityRepository.save(financialEntity);
+    }
 }
