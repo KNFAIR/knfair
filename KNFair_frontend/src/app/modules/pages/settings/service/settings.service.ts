@@ -15,7 +15,6 @@ export class SettingsService {
   }
 
     saveColorScheme(theme: string): Observable<any> {
-        console.error('SettingsService.saveColorScheme() not implemented');
         return of({});
     }
 }

@@ -129,7 +129,6 @@ import {AppNotfoundComponent} from './pages/app.notfound.component';
 import {AppErrorComponent} from './pages/app.error.component';
 import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
 import {AppLoginComponent} from './pages/app.login.component';
-
 // Demo services
 import {CountryService} from './demo/service/countryservice';
 import {CustomerService} from './demo/service/customerservice';
@@ -152,6 +151,7 @@ import {SettingsModule} from './modules/pages/settings/settings.module';
 import {ProfileModule} from './modules/pages/profile/profile.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {RegistrationModule} from "./modules/pages/registration/registration.module";
+import { SubjectsModule } from './modules/pages/subjects/subjects.module';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -254,6 +254,7 @@ FullCalendarModule.registerPlugins([
         SettingsModule,
         ProfileModule,
         RegistrationModule,
+        SubjectsModule
     ],
     declarations: [
         DashboardDemoComponent,

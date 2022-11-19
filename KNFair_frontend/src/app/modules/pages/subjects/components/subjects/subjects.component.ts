@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Subcject } from '../../model/subcject';
 import { SubjectsService } from '../../service/subjects.service';
 
@@ -22,5 +23,7 @@ export class SubjectsComponent implements OnInit {
 
   getSubjectsNumber():number {
     return this.subjects.length;
+  }
+  onBasicUpload(event) {
   }
 }
