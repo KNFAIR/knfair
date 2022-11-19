@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,6 +38,14 @@ public class SocialPostController {
     public ResponseEntity<List<SocialPostEntity>> getPostsByAutoVerificationFalse() {
         List<SocialPostEntity> socialPosts = socialPostService.findByAutoVerificationFalse();
         return new ResponseEntity<>(socialPosts, HttpStatus.OK);
+    }
+    @CrossOrigin
+    @GetMapping("/find/autoVerification")
+    public List<List<SocialPostEntity>> getPostsByAutoVerification() {
+        List<List<SocialPostEntity>> list = new ArrayList<>();
+        list.add(socialPostService.findByAutoVerificationTrue());
+        list.add(socialPostService.findByAutoVerificationFalse());
+        return list;
     }
 
     @CrossOrigin
