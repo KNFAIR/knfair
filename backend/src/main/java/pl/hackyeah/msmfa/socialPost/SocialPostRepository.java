@@ -1,4 +1,6 @@
 package pl.hackyeah.msmfa.socialPost;
 
-public interface SocialPostRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SocialPostRepository extends JpaRepository<SocialPostEntity, Long> {
 }
