@@ -1,6 +1,7 @@
 package pl.hackyeah.msmfa.socialPost;
 
 import lombok.Data;
+import pl.hackyeah.msmfa.financialEntity.FinancialEntity;
 
 import javax.persistence.*;
 
@@ -21,5 +22,9 @@ public class SocialPostEntity {
 
     @Column(name = "auto_verification")
     private Boolean autoVerification;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "financial_entity_id")
+    private FinancialEntity financialEntity;
 
 }

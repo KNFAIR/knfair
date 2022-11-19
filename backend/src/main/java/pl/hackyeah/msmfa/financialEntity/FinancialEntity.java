@@ -1,8 +1,10 @@
 package pl.hackyeah.msmfa.financialEntity;
 
 import lombok.Data;
+import pl.hackyeah.msmfa.socialPost.SocialPostEntity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "financial_entity")
@@ -24,5 +26,8 @@ public class FinancialEntity {
 
     @Column(name = "fe_type")
     private String financialEntityType;
+
+    @OneToMany(mappedBy = "financialEntity", fetch = FetchType.LAZY)
+    private Set<SocialPostEntity> socialPosts;
 
 }
