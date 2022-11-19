@@ -14,7 +14,6 @@ export class ThemeService {
     }
 
     getColorScheme(): Observable<string> {
-        console.error('ThemeService.getColorScheme() not implemented');
-        return of('dark');
+        return of('light');
     }
 }
