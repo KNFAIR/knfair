@@ -44,6 +44,8 @@ import {RegistrationMainComponent} from './modules/pages/registration/components
 import {RegistrationLandlordComponent} from './modules/pages/registration/components/registration-landlord/registration-landlord.component';
 import {DashboardComponent} from './modules/pages/dashboard/components/dashboard/dashboard.component';
 import { SubjectsComponent } from './modules/pages/subjects/components/subjects/subjects.component';
+import { SubjPosPostComponent } from './modules/pages/subject-posts/component/subj-pos-post/subj-pos-post.component';
+import { SubfNegPostComponent } from './modules/pages/subject-posts/component/subf-neg-post/subf-neg-post.component';
 
 const route: Routes = [
     {
@@ -54,6 +56,8 @@ const route: Routes = [
             {path: 'settings', component: SettingsComponent},
             {path: 'subject', component: SubjectsComponent},
             {path: 'subject/post', component: SettingsComponent},
+            {path: 'subject/post/positive', component: SubjPosPostComponent},
+            {path: 'subject/post/negative', component: SubfNegPostComponent},
 
 
 

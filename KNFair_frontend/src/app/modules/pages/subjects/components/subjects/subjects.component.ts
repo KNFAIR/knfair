@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { SubjPostsService } from '../../../subject-posts/service/subj-posts.service';
 import { Post } from '../../model/post';
 import { Subcject } from '../../model/subcject';
 import { SubjectsService } from '../../service/subjects.service';
@@ -16,7 +18,9 @@ export class SubjectsComponent implements OnInit {
   negativePosts: Post[] = [];
   positivePosts: Post[] = [];
 
-  constructor(private service: SubjectsService) { }
+  constructor(private service: SubjectsService,
+              private subjService: SubjPostsService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.service.getAllProducts()
@@ -52,6 +56,16 @@ export class SubjectsComponent implements OnInit {
 
   getAllNumber() {
     return this.positivePosts.length + this.negativePosts.length;
+  }
+
+  onPositives() {
+    this.subjService.subj=this.selectedSubcject; 
+    this.router.navigateByUrl("/subject/post/positive")
+  }
+
+  onNegatives() {
+    this.subjService.subj=this.selectedSubcject; 
+    this.router.navigateByUrl("/subject/post/negative")
   }
 
 }

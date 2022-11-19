@@ -1,0 +1,54 @@
+version: "3.7"
+
+services:
+    db:
+        image: postgres:14-alpine
+        container_name: db
+        environment:
+            - POSTGRES_DB=${POSTGRES_DB_NAME}
+            - POSTGRES_USER=${POSTGRES_ADM}
+            - POSTGRES_PASSWORD=${POSTGRES_ADM_PASS}
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data
+        networks:
+            - rentlee-db
+
+    keycloak:
+        image: jboss/keycloak:16.0.0
+        container_name: keycloak
+        environment:
+            - KEYCLOAK_USER=${KEYCLOAK_USR}
+            - KEYCLOAK_PASSWORD=${KEYCLOAK_PASS}
+            - DB_VENDOR=POSTGRES
+            - DB_ADDR=db
+            - DB_DATABASE=${POSTGRES_DB_NAME}
+            - DB_SCHEMA=keycloak
+            - DB_USER=${POSTGRES_ADM}
+            - DB_PASSWORD=${POSTGRES_ADM_PASS}
+        ports:
+            -   8010:8080
+        networks:
+            - rentlee-db
+        depends_on:
+            -   db
+
+#    app:
+#        build: ./
+#        image: app
+#        environment:
+#            - POSTGRES_URL = db:5432
+#            - POSTGRES_DB
+#            - POSTGRES_USER
+#        secrets:
+#            - POSTGRES_PASSWORD
+#        ports:
+#            -   '80:8080'
+#        networks:
+#            - rentlee-db
+#        depends_on:
+#            -   db
+
+networks:
+    rentlee-db: {}
+    rentlee-ui: {}
+
