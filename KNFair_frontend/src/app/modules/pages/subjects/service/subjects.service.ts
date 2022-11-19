@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {environment} from 'src/environments/environment';
 import { Subcject } from '../model/subcject';
 
@@ -16,5 +16,9 @@ export class SubjectsService {
 
   public getAllProducts(): Observable<Subcject[]>{
     return this.http.get<Subcject[]>(`${this.baseUrl}/financialEntities/find/all`);
+  }
+
+  getAllPosts() {
+    
   }
 }

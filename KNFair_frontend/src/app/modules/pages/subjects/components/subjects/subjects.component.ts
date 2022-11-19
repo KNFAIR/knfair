@@ -11,19 +11,24 @@ import { SubjectsService } from '../../service/subjects.service';
 export class SubjectsComponent implements OnInit {
 
   subjects: Subcject[];
+  selectedSubcject: Subcject;
 
   constructor(private service: SubjectsService) { }
 
   ngOnInit(): void {
     this.service.getAllProducts()
     .subscribe(response => {
-      this.subjects = response;
+      this.subjects = response? response: [] ;
     })
   }
 
-  getSubjectsNumber():number {
+  getSubjectsNumber() {
     return this.subjects.length;
   }
   onBasicUpload(event) {
+  }
+  onRowSelect(selected: Subcject) {
+    this.selectedSubcject = selected;
+    this.service.getAllPosts()
   }
 }

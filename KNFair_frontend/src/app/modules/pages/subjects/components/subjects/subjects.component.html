@@ -7,36 +7,59 @@
                 <div class="col-1"></div>
                 <div class="col-11 grid">
                     <div class="col-3 grid">
-                        <div class="col-6">Ostatni upload listy:</div>
+                        <div class="col-6 label">Ostatni upload listy:</div>
                         <div class="col-6">20-11-2022 08:47</div>
-                        <div class="col-6">Liczba podiomtów:</div>
+                        <div class="col-6 label">Liczba podiomtów:</div>
                         <div class="col-6">{{getSubjectsNumber()}}</div>
-                        <div class="col-6">Upload nowej listy</div>
+                        <div class="col-6 label">Upload nowej listy</div>
                         <div class="col-6">
-                            <!-- <p-fileUpload mode="basic" name="subjects[]" url="./upload.php" accept="csv/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload> -->
+                            <p-fileUpload mode="basic" name="subjects[]" url="./upload.php" accept=".csv"
+                                maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
                         </div>
                     </div>
                 </div>
-                <div class="col-12">
-                    <p-table [value]="subjects" responsiveLayout="scroll"
-                            [paginator]="true" [rows]="10" responsiveLayout="scroll">
+                <div class="col-6">
+                    <p-table [value]="subjects" responsiveLayout="scroll" *ngIf="subjects" [paginator]="true"
+                        [rows]="10" [(selection)]="selectedSubcject" dataKey="id" selectionMode="single"
+                        (onRowSelect)="onRowSelect($event)">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th>Nazwa</th>
-                                <th>Skrócona nazwa</th>
-                                <th>NIP</th>
-                                <th>Typ</th>
+                                <th>id</th>
+                                <th>
+                                    <div class="flex justify-content-center align-items-center">
+                                        Nazwa</div>
+                                </th>
+                                <th>
+                                    <div class="flex justify-content-center align-items-center">
+                                        NIP</div>
+                                </th>
+                                <th>
+                                    <div class="flex justify-content-center align-items-center">
+                                        Typ</div>
+                                </th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-subject>
-                            <tr>
+                            <tr [pSelectableRow]="subject">
+                                <td>{{subject.id}}</td>
                                 <td>{{subject.financialEntityName}}</td>
-                                <td>{{subject.financialEntityShortName}}</td>
                                 <td>{{subject.financialEntityNip}}</td>
                                 <td>{{subject.financialEntityType}}</td>
                             </tr>
                         </ng-template>
                     </p-table>
+                </div>
+                <div class="col-4">
+                    <div class="card" *ngIf="selectedSubcject">
+                        <div class="col-3 grid">
+                            <div class="col-6 label">Liczba pozytywnych weryfikacji:</div>
+                            <div class="col-6">20-11-2022 08:47</div>
+                            <div class="col-6 label">Liczba negatywnych weryfikacji:</div>
+                            <div class="col-6">{{getSubjectsNumber()}}</div>
+                            <div class="col-6 label">Liczba wszystkich:</div>
+                            <div class="col-6">{{getSubjectsNumber()}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

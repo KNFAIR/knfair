@@ -12,6 +12,7 @@ import { SharedModule } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { AppModule } from 'src/app/app.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -22,10 +23,13 @@ import { AppModule } from 'src/app/app.module';
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
     FileUploadModule,
     TableModule,
     PaginatorModule,
-        
+    ButtonModule,
+    RippleModule,
+    
   ],
   exports: [
     SubjectsComponent
