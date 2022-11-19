@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/financialEntities")
+@RequestMapping("/api")
 public class FinancialEntityController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class FinancialEntityController {
     }
 
 
-    @GetMapping("/find/all")
+    @GetMapping("/financialEntities/find/all")
     public ResponseEntity<List<FinancialEntity>> getAllFinancialEntities() {
         List<FinancialEntity> financialEntities = financialEntityService.findAllFinancialEntities();
 

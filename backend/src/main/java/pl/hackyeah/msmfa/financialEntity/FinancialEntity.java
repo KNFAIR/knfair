@@ -18,6 +18,9 @@ public class FinancialEntity {
     @Column(name = "fe_name")
     private String financialEntityName;
 
+    @Column(name = "fe_short_name")
+    private String financialEntityShortName;
+
     @Column(name = "fe_nip")
     private Long financialEntityNip;
 
