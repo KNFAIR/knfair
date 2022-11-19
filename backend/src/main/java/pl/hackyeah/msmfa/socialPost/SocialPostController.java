@@ -26,6 +26,20 @@ public class SocialPostController {
     }
 
     @CrossOrigin
+    @GetMapping("/find/trueAutoVerification")
+    public ResponseEntity<List<SocialPostEntity>> getPostsByAutoVerificationTrue() {
+        List<SocialPostEntity> socialPosts = socialPostService.findByAutoVerificationTrue();
+        return new ResponseEntity<>(socialPosts, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/find/falseAutoVerification")
+    public ResponseEntity<List<SocialPostEntity>> getPostsByAutoVerificationFalse() {
+        List<SocialPostEntity> socialPosts = socialPostService.findByAutoVerificationFalse();
+        return new ResponseEntity<>(socialPosts, HttpStatus.OK);
+    }
+
+    @CrossOrigin
     @GetMapping("/find/{id}")
     public SocialPostEntity getSocialPostById(@PathVariable("id") Long id) {
         return socialPostService.findById(id);
