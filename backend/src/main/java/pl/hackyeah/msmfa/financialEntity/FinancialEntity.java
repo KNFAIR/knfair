@@ -2,10 +2,7 @@ package pl.hackyeah.msmfa.financialEntity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "financial_entity")
@@ -13,6 +10,7 @@ import javax.persistence.Table;
 public class FinancialEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "fe_name")
