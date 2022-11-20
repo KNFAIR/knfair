@@ -1,5 +1,6 @@
 package pl.hackyeah.msmfa.socialPost;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import pl.hackyeah.msmfa.financialEntity.FinancialEntity;
 
