@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Post } from '../../../subjects/model/post';
 import { Subcject } from '../../../subjects/model/subcject';
 import { SubjPostsService } from '../../service/subj-posts.service';
@@ -33,5 +34,8 @@ export class SubjPosPostComponent implements OnInit {
     });
   }
 
+  getImageUrl() {
+    return `${environment.baseUrl}/post/${this.selectedPost.id}/image`
+  }
 
 }

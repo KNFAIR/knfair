@@ -13,6 +13,6 @@ export class PreventService {
   constructor(private http: HttpClient) { }
 
   public verifyPost(content: string): Observable<Boolean> {
-    return this.http.post<Boolean>(`${this.baseUrl}/post/verify`, {content: content});
+    return this.http.post<Boolean>(`${this.baseUrl}/socialPosts/verify`, {content: content});
   }
 }
