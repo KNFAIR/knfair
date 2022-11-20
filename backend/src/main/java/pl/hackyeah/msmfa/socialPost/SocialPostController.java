@@ -1,5 +1,16 @@
 package pl.hackyeah.msmfa.socialPost;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.servlet.function.EntityResponse;
+import pl.hackyeah.msmfa.dto.InfluDto;
+import pl.hackyeah.msmfa.dto.VerificationDataDto;
+import pl.hackyeah.msmfa.service.FileService;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,16 +101,16 @@ public class SocialPostController {
     @GetMapping("/find/groupByFinancialEntity/{financialEntityId}")
     @Transactional
     public List<List<SocialPostEntityMiniDTO>> getPostsByFinancialEntityId(@PathVariable("financialEntityId") Long financialEntityId) {
-    	
+
         List<List<SocialPostEntity>> l = socialPostService.getPostsNotManualVericated(financialEntityId);
-        
+
         List<List<SocialPostEntityMiniDTO>> result = new ArrayList<>();
         result.add(copyListToDTO(l.get(0)));
         result.add(copyListToDTO(l.get(1)));
-        
+
 		return result ;
-        
-        
+
+
     }
 
     @CrossOrigin
@@ -135,7 +146,7 @@ public class SocialPostController {
     	dto.setManualVerification(e.getManualVerification());
     	dto.setPostCreatedDate(e.getPostCreatedDate());
     	dto.setReasons(e.getReasons());
-    	
+
 		dto.setLogos(e.getLogos().stream().map(FinancialEntity::getFinancialEntityName).toList() );
 		dto.setOtherLogos(new ArrayList<String>(e.getOtherLogos()));
     	return dto;
@@ -161,5 +172,12 @@ public class SocialPostController {
         boolean result = textClassificationService.isScam(dto.getContent());
         return ResponseEntity.ok(result);
     }
+
+    @CrossOrigin
+    @GetMapping("/influ")
+    private List<InfluDto> getInflu() {
+        return socialPostService.getInflu();
+    }
+
 
 }
