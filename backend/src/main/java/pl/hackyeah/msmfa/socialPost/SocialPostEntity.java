@@ -1,17 +1,34 @@
 package pl.hackyeah.msmfa.socialPost;
 
-import lombok.Data;
-import pl.hackyeah.msmfa.financialEntity.FinancialEntity;
+import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import pl.hackyeah.msmfa.financialEntity.FinancialEntity;
 
 @Entity
 @Table(name = "social_post")
-@Data
+@Getter 
+@Setter 
+@RequiredArgsConstructor 
+@ToString 
 public class SocialPostEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Long id;
 
     @Column(name = "social_post_url")
@@ -28,5 +45,8 @@ public class SocialPostEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private FinancialEntity financialEntity;
+    
+    @ManyToMany
+    private Set<FinancialEntity> logos;
 
 }
