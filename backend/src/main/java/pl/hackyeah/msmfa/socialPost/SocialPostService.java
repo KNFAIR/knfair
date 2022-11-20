@@ -43,4 +43,8 @@ public class SocialPostService {
     public SocialPostEntity addSocialPost(SocialPostEntity socialPost) {
         return socialPostRepository.save(socialPost);
     }
+
+	public List<SocialPostEntity> findByFinancialInstitutionId(Long id) {
+		return socialPostRepository.findByFinancialEntityId(id);
+	}
 }

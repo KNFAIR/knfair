@@ -66,7 +66,7 @@ public class LogoService {
 
 				// For full list of available annotations, see http://g.co/cloud/vision/docs
 				for (EntityAnnotation annotation : res.getLogoAnnotationsList()) {
-					System.out.println(annotation.getDescription());
+//					System.out.println(annotation.getDescription());
 					result.add(annotation.getDescription());
 				}
 			}
@@ -105,10 +105,10 @@ public class LogoService {
 					return null;
 				}
 
-				System.out.println(res);
+//				System.out.println(res);
 				// For full list of available annotations, see http://g.co/cloud/vision/docs
 				for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
-					System.out.println(annotation.getDescription());
+//					System.out.println(annotation.getDescription());
 					sb.append(annotation.getDescription());
 				}
 			}

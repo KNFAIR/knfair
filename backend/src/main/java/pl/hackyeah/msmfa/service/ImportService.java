@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import pl.hackyeah.msmfa.financialEntity.FinancialEntity;
 import pl.hackyeah.msmfa.financialEntity.FinancialEntityRepository;
+import pl.hackyeah.msmfa.socialPost.FlagReason;
 import pl.hackyeah.msmfa.socialPost.SocialPostEntity;
 import pl.hackyeah.msmfa.socialPost.SocialPostRepository;
 
@@ -31,8 +32,6 @@ public class ImportService {
 	@Value("${import.dir}")
 	private String importDir;
 	
-	@Value("${files.dir}")
-	private String filesDir;
 	
 	@Autowired
 	private FileService fileService;
@@ -45,6 +44,9 @@ public class ImportService {
 
 	@Autowired
 	private LogoService logoService;
+	
+	@Autowired
+	private TextClassificationService textClassificationService;
 	
 	private final String[] randomEntities = new String [] {
 			"Powszechny Zakład Ubezpieczeń",
@@ -71,10 +73,18 @@ public class ImportService {
 			
 			try
 			{
+				String s = randomEntities[random.nextInt(randomEntities.length)];
+				Optional<FinancialEntity> entity = findByName(s);
+				if (entity.isEmpty()) {
+					System.err.println("Entity not found: " + s);
+				}
+				FileInputStream is = new FileInputStream(f);
+				Set<String> logos = logoService.detectLogo(is);
+				is.close();
 				
-				Optional<FinancialEntity> entity = findByName("Powszechny Zakład Ubezpieczeń");
-				Set<String> logos = logoService.detectLogo(new FileInputStream(f));
-				String ocr = logoService.ocr(new FileInputStream(f));
+				FileInputStream is2 = new FileInputStream(f);
+				String ocr = logoService.ocr(is2);
+				is2.close();
 			
 				SocialPostEntity post = new SocialPostEntity();
 				post.setFinancialEntity(entity.get());
@@ -88,19 +98,34 @@ public class ImportService {
 					if (e.isPresent()) {
 						logoEntities.add(e.get());
 					}
+					else {
+						System.err.println(logo);
+					}
 				}
 				logoEntities.remove(entity.get());
 				post.setLogos(logoEntities);
 				Calendar cal = Calendar.getInstance();
 				cal.add(Calendar.DAY_OF_MONTH, -1 * random.nextInt(30) );
 				post.setPostCreatedDate(df.format(cal.getTime()));
+				post.setOcr(ocr);
+				Set<FlagReason> reasons = new HashSet<>();
+				if (! logos.isEmpty());
+					reasons.add(FlagReason.LOGOS);
+				post.setReasons(reasons );
+				if (textClassificationService.isScam(ocr))
+					reasons.add(FlagReason.KEYWORDS);
+				
 				SocialPostEntity saved = socialPostRepository.save(post);
 			
-				fileService.saveImage(saved.getId(), new FileInputStream(f));
+				FileInputStream is3 = new FileInputStream(f);
+				fileService.saveImage(saved.getId(), is3);
+				is3.close();
 			
-				f.renameTo(new File(f.getAbsolutePath()+".bak"));
+				File newFile = new File(f.getAbsolutePath()+".bak"); 
+				f.renameTo(newFile);
 			}
 			catch (Exception e) {
+				e.printStackTrace();
 				f.renameTo(new File(f.getAbsolutePath()+".err"));
 			}
 		}
@@ -131,6 +156,6 @@ public class ImportService {
 			}
 		}
 		
-		return financialEntityRepository.findById(maxEntityId);
+		return (maxEntityId != null) ? financialEntityRepository.findById(maxEntityId) : Optional.empty();
 	}
 }
