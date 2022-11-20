@@ -1,14 +1,28 @@
 package pl.hackyeah.msmfa.financialEntity;
 
-import lombok.Data;
-import pl.hackyeah.msmfa.socialPost.SocialPostEntity;
-
-import javax.persistence.*;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import pl.hackyeah.msmfa.socialPost.SocialPostEntity;
 
 @Entity
 @Table(name = "financial_entity")
-@Data
+@Getter 
+@Setter 
+@RequiredArgsConstructor 
+@ToString 
 public class FinancialEntity {
 
     @Id
