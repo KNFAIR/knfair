@@ -44,6 +44,7 @@ public class FinancialEntity {
     @Column(name = "fe_type")
     private String financialEntityType;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "financialEntity", fetch = FetchType.LAZY)
     private Set<SocialPostEntity> socialPosts;
 

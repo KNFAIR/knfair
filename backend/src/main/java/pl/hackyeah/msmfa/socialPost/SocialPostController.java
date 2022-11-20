@@ -159,7 +159,7 @@ public class SocialPostController {
     @PostMapping("/verify")
     public ResponseEntity<Boolean> verifyContent(@RequestBody VerificationDataDto dto) {
         boolean result = textClassificationService.isScam(dto.getContent());
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(! result);
     }
 
 }
