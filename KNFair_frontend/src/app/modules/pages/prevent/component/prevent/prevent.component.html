@@ -35,24 +35,22 @@
             </h5>
 
             <h5 class="center positive" *ngIf="positive">
-                <div>Post potencjalnie</div> 
+                <div>POZYTYWNA</div> 
+                <div>Post potencjalnie zgodny z wytycznymi  KNF*</div>
             </h5>
-
-            <div class="grid" *ngIf="positive">
-                <div class="col-12">
-asdads
-                </div>
-            </div>
 
             <h5 class="center positive" *ngIf="negative">
-                <div>Post potencjalnie</div> 
+                <div>NEGATYWNA</div> 
+                <div>Post potencjalnie niezgodny z wytycznymi  KNF*</div>
             </h5>
 
-            <div class="grid" *ngIf="negative">
+            <div class="grid">
                 <div class="col-12">
-asdadsa
+                    *Disclaimer: Powyższa informacja nie stanowi oficjalnej opinii KNF w zakresie zgodności sprawdzanej treści z wytycznymi dotyczącymi wykorzystywania mediów społecznościowych
+                    przez podmioty nadzorowane oraz osoby zatrudnione w tych podmiotach i nie może być wykorzystywana w oficjalnej komunukacji.
                 </div>
             </div>
+
             <div class="center">
                 <button pButton (click)="onCheckNext()">Sprawdź kolejny</button>
             </div>
