@@ -10,17 +10,10 @@ import { Subcject } from '../../subjects/model/subcject';
 })
 export class SubjPostsService {
 
-  private _subj: Subcject;
+  public subj: Subcject;
   private baseUrl = `${environment.baseUrl}`;
   constructor(private http: HttpClient) { }
 
-  get subj(): Subcject {
-    return this._subj;
-  }
-
-  set subj(subj: Subcject) {
-    this._subj = subj;
-  }
 
   public getPosts(subjectId: string): Observable<Post[][]> {
     // return this.http.get<Post[][]>(`${this.baseUrl}/find/groupByFinancialEntity/${subjectId}`);
@@ -30,13 +23,15 @@ export class SubjPostsService {
         postCreatedDate:'12-12-2022',
         facebookPostUrl: 'url1',
         manualVerification: null,
-        autoVerification: true
+        autoVerification: true,
+        reason:''
       },
       {id:'2',
       postCreatedDate:'12-12-2022',
         facebookPostUrl: 'url2',
         manualVerification: null,
-        autoVerification: true
+        autoVerification: true,
+        reason:''
       }
       ],
       [
@@ -44,16 +39,23 @@ export class SubjPostsService {
         postCreatedDate:'12-12-2022',
         facebookPostUrl: 'url3',
         manualVerification: null,
-        autoVerification: false
+        autoVerification: false,
+        reason:''
       },
       {id:'4',
       postCreatedDate:'12-12-2022',
         facebookPostUrl: 'url4',
         manualVerification: null,
-        autoVerification: false
+        autoVerification: false,
+        reason:''
       }
       ]
     ]);
+  }
+
+  public updateManual(post: Post): any {
+    // return this.http.put(`${this.baseUrl}/post`, post);
+    return of();
   }
 
   

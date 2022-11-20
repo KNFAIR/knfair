@@ -14,7 +14,7 @@ import { SubjectsService } from '../../service/subjects.service';
 export class SubjectsComponent implements OnInit {
 
   subjects: Subcject[] = [];
-  selectedSubcject: Subcject;
+  selectedSubcject: any;
   negativePosts: Post[] = [];
   positivePosts: Post[] = [];
 
@@ -59,15 +59,13 @@ export class SubjectsComponent implements OnInit {
   }
 
   onPositives() {
-    console.log('neg')
-    this.subjService.subj=this.selectedSubcject; 
-    this.router.navigateByUrl("/subject/post/positive")
+    this.subjService.subj=this.selectedSubcject.data; 
+    this.router.navigate(["subject","post","positive"])
   }
 
   onNegatives() {
-    console.log('pos');
-    this.subjService.subj=this.selectedSubcject; 
-    this.router.navigateByUrl("/subject/post/negative")
+    this.subjService.subj=this.selectedSubcject.data; 
+    this.router.navigate(["subject","post","negative"])
   }
 
 }

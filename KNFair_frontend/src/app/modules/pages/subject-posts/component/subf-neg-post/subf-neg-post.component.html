@@ -1,7 +1,7 @@
 <div class="grid justify-content-center">
     <div class="col-12 md:col-12">
         <div class="card">
-            <h5>{{subject.financialEntityName}}</h5>
+            <h5 *ngIf="subject">{{subject.financialEntityName}}</h5>
 
             <div class="grid">
                 <div class="col-6">
@@ -21,8 +21,24 @@
                             </ng-template>
                    </p-table>
                 </div>
-                <div class="col-6">
-
+                <div class="col-1"></div>
+                <div class="col-5 grid">
+                    <div class="col-12 right-panel grid" *ngIf="selectedPost">
+                        <div class="col-12">
+                            <img src="" alt="image">
+                        </div>
+                        <div class="col-4 label">Data:</div>
+                        <div class="col-8">{{selectedPost.postCreatedDate}}</div>
+                        <div class="col-4 label">Status AI:</div>
+                        <div class="col-8 positive" *ngIf="selectedPost.autoVerification">Zgodny</div>
+                        <div class="col-8 negative" *ngIf="!selectedPost.autoVerification">Niezgodny</div>
+                        <div class="col-4 label">Znalezione frazy:</div>
+                        <div class="col-8">{{selectedPost.reason}}</div>
+                        <div class="col-4 label">Wybierz status manualny:</div>
+                        <div class="col-8">
+                            <p-inputSwitch (onChange)="onChange($event)" [(ngModel)]="selectedPost.manualVerification"></p-inputSwitch>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

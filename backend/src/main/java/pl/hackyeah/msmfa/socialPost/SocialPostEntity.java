@@ -47,6 +47,9 @@ public class SocialPostEntity {
     @Column(name = "auto_verification")
     private Boolean autoVerification;
 
+    @Column(name = "reason")
+    private String reason;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private FinancialEntity financialEntity;
     

@@ -31,6 +31,11 @@ public class SocialPostService {
         return socialPosts;
     }
 
+    public List<SocialPostEntity> findPostByFinancialEntityId(Long financialEntityId) {
+        List<SocialPostEntity> socialPost = socialPostRepository.findByFinancialEntityId(financialEntityId);
+        return socialPost;
+    }
+
     public SocialPostEntity findById(Long id) {
         return socialPostRepository.findById(id).get();
     }
