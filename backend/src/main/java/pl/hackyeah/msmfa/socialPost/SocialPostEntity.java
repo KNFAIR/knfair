@@ -63,4 +63,11 @@ public class SocialPostEntity {
     @ElementCollection
     @Enumerated(EnumType.STRING)
     private Set<FlagReason> reasons;
+    
+
+    @ElementCollection
+    private Set<String> otherLogos;
+    
+    
+
 }

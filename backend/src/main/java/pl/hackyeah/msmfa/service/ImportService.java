@@ -106,6 +106,7 @@ public class ImportService {
 		post.setAutoVerification(false);
 		
 		Set<FinancialEntity> logoEntities = new HashSet<>();
+		Set<String> otherLogos = new HashSet<>();
 		for(String logo : logos) {
 			
 			Optional<FinancialEntity> e = findByName(logo); 
@@ -114,6 +115,7 @@ public class ImportService {
 				logoEntities.add(e.get());
 			}
 			else {
+				otherLogos.add(logo);
 				System.err.println(logo);
 			}
 		}
@@ -123,6 +125,7 @@ public class ImportService {
 		cal.add(Calendar.DAY_OF_MONTH, -1 * random.nextInt(30) );
 		post.setPostCreatedDate(df.format(cal.getTime()));
 		post.setOcr(ocr);
+		post.setOtherLogos(otherLogos);
 		Set<FlagReason> reasons = new HashSet<>();
 		if (! logos.isEmpty());
 			reasons.add(FlagReason.LOGOS);

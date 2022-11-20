@@ -7,7 +7,7 @@ public class TextClassificationService {
 
 	private final String[] strong = {"bez ryzyka", "kupuj", "inwestuj", "kryptowaluta", "zysk"};
 	
-	boolean isScam(String text) {
+	public boolean isScam(String text) {
 		for(String s : strong) {
 			return text.contains(s);
 		}

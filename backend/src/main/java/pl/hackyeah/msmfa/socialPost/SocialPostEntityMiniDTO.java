@@ -1,5 +1,6 @@
 package pl.hackyeah.msmfa.socialPost;
 
+import java.util.List;
 import java.util.Set;
 
 import lombok.Data;
@@ -13,4 +14,6 @@ public class SocialPostEntityMiniDTO {
      private Boolean manualVerification;
      private Boolean autoVerification;
      private Set<FlagReason> reasons;
+     private List<String> logos;
+     private List<String> otherLogos;
 }
