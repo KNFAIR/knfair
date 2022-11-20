@@ -39,9 +39,9 @@ export class SubjectsComponent implements OnInit {
   }
   onBasicUpload(event) {
   }
-  onRowSelect(selected: Subcject) {
-    this.selectedSubcject = selected;
-    this.service.getAllPosts(selected.id).subscribe(response => {
+  onRowSelect(selected: any) {
+    this.selectedSubcject = selected.data;
+    this.service.getAllPosts(this.selectedSubcject.id).subscribe(response => {
       if(response){
         this.positivePosts = response[0];
         this.negativePosts = response[1];

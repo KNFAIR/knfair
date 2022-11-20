@@ -67,11 +67,15 @@ public class SocialPostController {
         return list;
     }
 
+    @PutMapping("/update")
+    public void updatePost(SocialPostEntity post) {
+        socialPostService.update(post);
+    }
+
     @CrossOrigin
     @GetMapping("/find/groupByFinancialEntity/{financialEntityId}")
-    public ResponseEntity<List<SocialPostEntity>> getPostsByFinancialEntityId(@PathVariable("financialEntityId") Long financialEntityId) {
-        List<SocialPostEntity> socialPosts = socialPostService.findPostByFinancialEntityId(financialEntityId);
-        return new ResponseEntity<>(socialPosts, HttpStatus.OK);
+    public List<List<SocialPostEntity>> getPostsByFinancialEntityId(@PathVariable("financialEntityId") Long financialEntityId) {
+        return socialPostService.getPostsNotManualVericated(financialEntityId);
     }
 
     @CrossOrigin

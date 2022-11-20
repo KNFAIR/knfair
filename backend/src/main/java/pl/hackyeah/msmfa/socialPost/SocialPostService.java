@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class SocialPostService {
 
     @Autowired
@@ -36,6 +39,13 @@ public class SocialPostService {
         return socialPost;
     }
 
+    public List<List<SocialPostEntity>> getPostsNotManualVericated(Long financialInstId) {
+        List<List<SocialPostEntity>> result = new ArrayList<>();
+        result.add(socialPostRepository.findByManualVerificationIsNullAndAutoVerificationIsTrueAndFinancialEntityId(financialInstId));
+        result.add(socialPostRepository.findByManualVerificationIsNullAndAutoVerificationIsFalseAndFinancialEntityId(financialInstId));
+        return result;
+    }
+
     public SocialPostEntity findById(Long id) {
         return socialPostRepository.findById(id).get();
     }
@@ -47,4 +57,10 @@ public class SocialPostService {
 	public List<SocialPostEntity> findByFinancialInstitutionId(Long id) {
 		return socialPostRepository.findByFinancialEntityId(id);
 	}
+
+    public void update(SocialPostEntity post) {
+        SocialPostEntity entity = socialPostRepository.findById(post.getId()).get();
+        entity.setManualVerification(post.getManualVerification());
+        socialPostRepository.save(entity);
+    }
 }
