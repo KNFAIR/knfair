@@ -12,14 +12,26 @@ export class SubjPosPostComponent implements OnInit {
 
   subject: Subcject;
   posts: Post[] = [];
-  selectedPost: Post;
+  selectedPost: any;
+  manualStatus:false;
+  edition: boolean;
+
   constructor(private service: SubjPostsService) { }
 
   ngOnInit(): void {
     this.subject = this.service.subj;
-    this.service.getPosts(this.subject.id).subscribe(response => {
-      this.posts = response[0];
+    this.service.getPosts(this.service.subj.id).subscribe(response => {
+      this.posts = response[1];
     });
   }
+  
+  onChange(e: any) {
+    let isChecked = e.checked;
+    this.selectedPost.manualVerification = isChecked;
+    this.service.updateManual(this.selectedPost).subscribe(response => {
+      console.log('ok');
+    });
+  }
+
 
 }

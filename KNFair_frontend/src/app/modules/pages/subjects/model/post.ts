@@ -4,4 +4,5 @@ export class Post {
     facebookPostUrl: string;
     manualVerification: Boolean;
     autoVerification: Boolean;
+    reason: string;
 }

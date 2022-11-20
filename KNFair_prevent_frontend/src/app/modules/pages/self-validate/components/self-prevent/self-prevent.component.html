@@ -1,0 +1,17 @@
+<div class="grid justify-content-center">
+    <div class="col-6 md:col-12">
+        <div class="card">
+            <h5>Walidacja postu</h5>
+
+            <div class="col-12 grid">
+                <div class="col-6">Załaduj plik z postem</div>
+                <div class="col-6">
+                    <p-fileUpload mode="basic" name="subjects[]" url="./upload.php"
+                                (onUpload)="onBasicUpload($event)"></p-fileUpload>
+                </div>
+                <div class="col-6">Treść postu</div>
+                <div class="col-6"></div>
+            </div>
+        </div>
+    </div>
+</div>
