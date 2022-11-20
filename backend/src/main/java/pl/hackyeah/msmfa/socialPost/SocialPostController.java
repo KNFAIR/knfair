@@ -1,20 +1,8 @@
 package pl.hackyeah.msmfa.socialPost;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.web.bind.annotation.*;
-
-import org.springframework.web.servlet.function.EntityResponse;
-import pl.hackyeah.msmfa.dto.InfluDto;
-import pl.hackyeah.msmfa.dto.VerificationDataDto;
-import pl.hackyeah.msmfa.service.FileService;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
@@ -31,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import pl.hackyeah.msmfa.dto.InfluDto;
 import pl.hackyeah.msmfa.dto.VerificationDataDto;
 import pl.hackyeah.msmfa.financialEntity.FinancialEntity;
 import pl.hackyeah.msmfa.service.FileService;
@@ -41,7 +30,7 @@ import pl.hackyeah.msmfa.service.TextClassificationService;
 public class SocialPostController {
 
     @Autowired
-    private final SocialPostService socialPostService;
+    private SocialPostService socialPostService;
     
     @Autowired
     private FileService fileService;
@@ -49,10 +38,7 @@ public class SocialPostController {
     @Autowired
     private TextClassificationService textClassificationService;
 
-    public SocialPostController(SocialPostService socialPostService) {
-        this.socialPostService = socialPostService;
-    }
-
+    
     @CrossOrigin
     @GetMapping("/find/all")
     public ResponseEntity<List<SocialPostEntity>> getAllSocialPosts() {
@@ -175,7 +161,7 @@ public class SocialPostController {
 
     @CrossOrigin
     @GetMapping("/influ")
-    private List<InfluDto> getInflu() {
+    public List<InfluDto> getInflu() {
         return socialPostService.getInflu();
     }
 
