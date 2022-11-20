@@ -88,8 +88,18 @@ public class SocialPostController {
 
     @CrossOrigin
     @GetMapping("/find/groupByFinancialEntity/{financialEntityId}")
-    public List<List<SocialPostEntity>> getPostsByFinancialEntityId(@PathVariable("financialEntityId") Long financialEntityId) {
-        return socialPostService.getPostsNotManualVericated(financialEntityId);
+    @Transactional
+    public List<List<SocialPostEntityMiniDTO>> getPostsByFinancialEntityId(@PathVariable("financialEntityId") Long financialEntityId) {
+    	
+        List<List<SocialPostEntity>> l = socialPostService.getPostsNotManualVericated(financialEntityId);
+        
+        List<List<SocialPostEntityMiniDTO>> result = new ArrayList<>();
+        result.add(copyListToDTO(l.get(0)));
+        result.add(copyListToDTO(l.get(1)));
+        
+		return result ;
+        
+        
     }
 
     @CrossOrigin
@@ -105,15 +115,18 @@ public class SocialPostController {
     @Transactional
     public List<SocialPostEntityMiniDTO> getSocialPostByFinancialEntityId(@PathVariable("id") Long id) {
     	List<SocialPostEntity> l = socialPostService.findByFinancialInstitutionId(id);
+    	return copyListToDTO(l);
+    }
+
+    private List<SocialPostEntityMiniDTO> copyListToDTO(List<SocialPostEntity> l) {
         List<SocialPostEntityMiniDTO> list = new ArrayList<>();
 		for(SocialPostEntity e : l) {
         	list.add(copyToDTO(e));
         }
+		return list;
+	}
 
-    	return list;
-    }
-
-    private SocialPostEntityMiniDTO copyToDTO(SocialPostEntity e) {
+	private SocialPostEntityMiniDTO copyToDTO(SocialPostEntity e) {
     	SocialPostEntityMiniDTO dto = new SocialPostEntityMiniDTO();
     	
     	dto.setId(e.getId());
