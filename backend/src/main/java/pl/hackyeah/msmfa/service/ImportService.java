@@ -2,6 +2,8 @@ package pl.hackyeah.msmfa.service;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -56,7 +58,10 @@ public class ImportService {
 			"Citi Handlowy",
 			"Millennium"
 	};
-	
+
+	private DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	private Random random = new Random();
+
 	@PostConstruct
 	@Transactional
 	public void importFiles() {
@@ -64,8 +69,6 @@ public class ImportService {
 		File dir = new File(importDir);
 		dir.mkdir();
 
-		Random random = new Random();
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 		for(File f : dir.listFiles()) {
 			if (!f.getName().toLowerCase().endsWith(".png"))
@@ -78,57 +81,65 @@ public class ImportService {
 				if (entity.isEmpty()) {
 					System.err.println("Entity not found: " + s);
 				}
-				FileInputStream is = new FileInputStream(f);
-				Set<String> logos = logoService.detectLogo(is);
-				is.close();
 				
-				FileInputStream is2 = new FileInputStream(f);
-				String ocr = logoService.ocr(is2);
-				is2.close();
-			
-				SocialPostEntity post = new SocialPostEntity();
-				post.setFinancialEntity(entity.get());
-				post.setAutoVerification(false);
-				
-				Set<FinancialEntity> logoEntities = new HashSet<>();
-				for(String logo : logos) {
-					
-					Optional<FinancialEntity> e = findByName(logo); 
-							
-					if (e.isPresent()) {
-						logoEntities.add(e.get());
-					}
-					else {
-						System.err.println(logo);
-					}
-				}
-				logoEntities.remove(entity.get());
-				post.setLogos(logoEntities);
-				Calendar cal = Calendar.getInstance();
-				cal.add(Calendar.DAY_OF_MONTH, -1 * random.nextInt(30) );
-				post.setPostCreatedDate(df.format(cal.getTime()));
-				post.setOcr(ocr);
-				Set<FlagReason> reasons = new HashSet<>();
-				if (! logos.isEmpty());
-					reasons.add(FlagReason.LOGOS);
-				post.setReasons(reasons );
-				if (textClassificationService.isScam(ocr))
-					reasons.add(FlagReason.KEYWORDS);
-				
-				SocialPostEntity saved = socialPostRepository.save(post);
-			
-				FileInputStream is3 = new FileInputStream(f);
-				fileService.saveImage(saved.getId(), is3);
-				is3.close();
-			
-				File newFile = new File(f.getAbsolutePath()+".bak"); 
-				f.renameTo(newFile);
+				importFile(f, entity.get());
 			}
 			catch (Exception e) {
 				e.printStackTrace();
 				f.renameTo(new File(f.getAbsolutePath()+".err"));
 			}
 		}
+	}
+
+	@Transactional
+	public Long importFile(File f, FinancialEntity entity) throws IOException {
+		FileInputStream is = new FileInputStream(f);
+		Set<String> logos = logoService.detectLogo(is);
+		is.close();
+		
+		FileInputStream is2 = new FileInputStream(f);
+		String ocr = logoService.ocr(is2);
+		is2.close();
+	
+		SocialPostEntity post = new SocialPostEntity();
+		post.setFinancialEntity(entity);
+		post.setAutoVerification(false);
+		
+		Set<FinancialEntity> logoEntities = new HashSet<>();
+		for(String logo : logos) {
+			
+			Optional<FinancialEntity> e = findByName(logo); 
+					
+			if (e.isPresent()) {
+				logoEntities.add(e.get());
+			}
+			else {
+				System.err.println(logo);
+			}
+		}
+		logoEntities.remove(entity);
+		post.setLogos(logoEntities);
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, -1 * random.nextInt(30) );
+		post.setPostCreatedDate(df.format(cal.getTime()));
+		post.setOcr(ocr);
+		Set<FlagReason> reasons = new HashSet<>();
+		if (! logos.isEmpty());
+			reasons.add(FlagReason.LOGOS);
+		post.setReasons(reasons );
+		if (textClassificationService.isScam(ocr))
+			reasons.add(FlagReason.KEYWORDS);
+		
+		SocialPostEntity saved = socialPostRepository.save(post);
+	
+		FileInputStream is3 = new FileInputStream(f);
+		fileService.saveImage(saved.getId(), is3);
+		is3.close();
+	
+		File newFile = new File(f.getAbsolutePath()+".bak"); 
+		f.renameTo(newFile);
+		
+		return saved.getId();
 	}
 
 	private Optional<FinancialEntity> findByName(String logo) {
