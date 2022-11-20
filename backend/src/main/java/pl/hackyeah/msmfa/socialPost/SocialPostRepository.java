@@ -9,4 +9,6 @@ public interface SocialPostRepository extends JpaRepository<SocialPostEntity, Lo
     List<SocialPostEntity> findByManualVerificationIsNullAndAutoVerificationIsTrue();
 
     List<SocialPostEntity> findByManualVerificationIsNullAndAutoVerificationIsFalse();
+
+    List<SocialPostEntity> findByFinancialEntityId(Long financialEntityId);
 }

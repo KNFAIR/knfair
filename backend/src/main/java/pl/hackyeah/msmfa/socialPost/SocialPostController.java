@@ -49,6 +49,13 @@ public class SocialPostController {
     }
 
     @CrossOrigin
+    @GetMapping("/find/groupByFinancialEntity/{financialEntityId}")
+    public ResponseEntity<List<SocialPostEntity>> getPostsByFinancialEntityId(@PathVariable("financialEntityId") Long financialEntityId) {
+        List<SocialPostEntity> socialPosts = socialPostService.findPostByFinancialEntityId(financialEntityId);
+        return new ResponseEntity<>(socialPosts, HttpStatus.OK);
+    }
+
+    @CrossOrigin
     @GetMapping("/find/{id}")
     public SocialPostEntity getSocialPostById(@PathVariable("id") Long id) {
         return socialPostService.findById(id);
