@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FileService {
 
-	@Value("${file.dir")
+	@Value("${file.dir}")
 	private String fileDir;
 
 	@PostConstruct

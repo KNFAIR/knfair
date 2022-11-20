@@ -46,6 +46,15 @@ public class ImportService {
 	@Autowired
 	private LogoService logoService;
 	
+	private final String[] randomEntities = new String [] {
+			"Powszechny Zakład Ubezpieczeń",
+			"PKO Bank Polski",
+			"mbank",
+			"Santander",
+			"Citi Handlowy",
+			"Millennium"
+	};
+	
 	@PostConstruct
 	@Transactional
 	public void importFiles() {
@@ -69,6 +78,7 @@ public class ImportService {
 			
 				SocialPostEntity post = new SocialPostEntity();
 				post.setFinancialEntity(entity.get());
+				post.setAutoVerification(false);
 				
 				Set<FinancialEntity> logoEntities = new HashSet<>();
 				for(String logo : logos) {
