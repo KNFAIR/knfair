@@ -35,7 +35,7 @@ export class SubjPosPostComponent implements OnInit {
   }
 
   getImageUrl() {
-    return `${environment.baseUrl}/post/${this.selectedPost.id}/image`
+    return `${environment.baseUrl}/socialPosts/find/${this.selectedPost.id}/image`
   }
 
 }

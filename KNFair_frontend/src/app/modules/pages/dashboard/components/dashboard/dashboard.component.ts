@@ -18,13 +18,43 @@ export class DashboardComponent implements OnInit {
   revenueChartOptions: any;
   influData: any;
   influs: any[] = [];
+  private _selectedInflu: any;
+  public get selectedInflu(): any {
+    return this._selectedInflu;
+  }
+  public set selectedInflu(value: any) {
+    this._selectedInflu = value;
+    this.influData.datasets[0].data = [value.positives, value.negatives]
+  }
 
   constructor(private service: SubjectsService) { }
 
   ngOnInit(): void {
     this.service.getAllProducts().subscribe(response => {
       this.subjects = response;
-      this.loadInflus();
+    });
+    this.service.getInflus().subscribe(response => {
+      this.influs=response;
+      this.influData={
+        labels: ['pozytywne', 'negatywne'],
+        datasets: [
+            {
+                data: [this.influs[0].positives, this.influs[0].negatives],
+                backgroundColor: [
+                    '#0F8BFD',
+                    '#FC6161',
+                    '#545C6B',
+                ],
+                hoverBackgroundColor: [
+                    '#0F8BFD',
+                    '#FC6161',
+                    '#545C6B',
+                ],
+                borderColor: 'transparent',
+                fill: true
+            }
+        ]
+    };
     });
 
     this.periods = [
@@ -50,26 +80,7 @@ export class DashboardComponent implements OnInit {
         }
       }
     };
-    this.influData={
-      labels: ['pozytywne', 'negatywne', 'W trakcie oceny'],
-      datasets: [
-          {
-              data: [30, 18, 36],
-              backgroundColor: [
-                  '#0F8BFD',
-                  '#FC6161',
-                  '#545C6B',
-              ],
-              hoverBackgroundColor: [
-                  '#0F8BFD',
-                  '#FC6161',
-                  '#545C6B',
-              ],
-              borderColor: 'transparent',
-              fill: true
-          }
-      ]
-  };
+    
   }
 
   onChangeSubject(event: any) {
@@ -138,10 +149,7 @@ export class DashboardComponent implements OnInit {
     
   }
 
-  onInfluSelect(id: string){
-    let dt = this.influs.filter(i => i.id = id)[0];
-    this.influData.datasets[0].data = [dt.pos, dt.neg, 0]
-  }
+  
 
   private loadInflus() {
    this.subjects

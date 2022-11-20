@@ -39,7 +39,20 @@
             <h5>Topowi influencerzy</h5>
             <div class="grid">
                 <div class="col-4">
-                    
+                    <p-table [value]="influs" responsiveLayout="scroll" *ngIf="influs" [paginator]="true"
+                            [rows]="10" [(selection)]="selectedInflu" dataKey="id" selectionMode="single"
+                            >
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Data publikacji posta</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-post>
+                                <tr [pSelectableRow]="post">
+                                    <td>{{post.postCreatedDate}}</td>
+                                </tr>
+                            </ng-template>
+                   </p-table>
                 </div>
                 <div class="col-4">
                     <div class="col-4">
