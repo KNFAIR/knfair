@@ -1,0 +1,61 @@
+<div class="grid" *ngIf="edition">
+    <div class="col-12">
+        <div class="card">
+            <h5>Zweryfikuj swój post</h5>
+
+            <div class="grid">
+                <div class="col-3"></div>
+                <div class="col-6 grid">
+                    <div class="col-2">Wklej tekst:</div>
+                    <div class="col-6">
+                        <textarea pInputTextarea [(ngModel)]="content" [rows]="8" [cols]="50"></textarea>
+                    </div>
+                    <div class="col-12 center">Lub</div>
+                    <div class="col-4">Załaduj zdjęcie lub wideo:</div>
+                    <div class="col-8">
+                        <p-fileUpload mode="basic" name="subjects[]" url="./upload.php"
+                            (onUpload)="onBasicUpload($event)"></p-fileUpload>
+                    </div>
+                    <div class="col-12 center">
+                        <button pButton (click)="onCheck()">Sprawdź</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="grid justify-content-center" *ngIf="!edition">
+    <div class="col-12 md:col-12">
+        <div class="card">
+            <h5 class="center">
+                <div>Wynik weryfikacji</div> 
+            </h5>
+
+            <h5 class="center positive" *ngIf="positive">
+                <div>Post potencjalnie</div> 
+            </h5>
+
+            <div class="grid" *ngIf="positive">
+                <div class="col-12">
+asdads
+                </div>
+            </div>
+
+            <h5 class="center positive" *ngIf="negative">
+                <div>Post potencjalnie</div> 
+            </h5>
+
+            <div class="grid" *ngIf="negative">
+                <div class="col-12">
+asdadsa
+                </div>
+            </div>
+            <div class="center">
+                <button pButton (click)="onCheckNext()">Sprawdź kolejny</button>
+            </div>
+        </div>
+    </div>
+</div>

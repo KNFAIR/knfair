@@ -14,6 +14,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { AppModule } from 'src/app/app.module';
 import { FormsModule } from '@angular/forms';
 import { FieldsetModule } from 'primeng/fieldset';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 
@@ -31,6 +32,8 @@ import { FieldsetModule } from 'primeng/fieldset';
     ButtonModule,
     RippleModule,
     FieldsetModule,
+    InputTextModule,
+    
     
   ],
   exports: [

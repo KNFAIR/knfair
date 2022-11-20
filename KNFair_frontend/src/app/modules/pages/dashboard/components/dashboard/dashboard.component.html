@@ -1,11 +1,62 @@
 <div class="grid justify-content-center">
     <div class="col-12 md:col-12">
         <div class="card">
+            <h5>Statystyki postów</h5>
             <div class="grid">
-                <div class="col-8"></div>
+                <div class="col-8">
+                    <div class="graph">
+                        <p-chart #postsChart type="line" id="pst-chart" [data]="postsData"></p-chart>
+                    </div>
+                </div>
                 <div class="col-4">
-                    <p-dropdown [options]="subjects" [(ngModel)]="selectedSubject" optionLabel="financialEntityName"
-                    filter="true" filterBy="selectedSubject"></p-dropdown>
+                    <div class="panel">
+                        <div class="col-12 panel-title">Opcje</div>
+                        <div class="grid">
+
+                            <div class="col-4 label">Wybierz podmiot</div>
+                            <div class="col-8">
+                                <p-dropdown [options]="subjects" [(ngModel)]="selectedSubject"
+                                    optionLabel="financialEntityName" filter="true" filterBy="financialEntityName"
+                                    (onChange)="onChangeSubject($event); postsChart.refresh()"></p-dropdown>
+                            </div>
+                            <div class="col-4 label">Wybierz okres</div>
+                            <p-dropdown [options]="periods" [(ngModel)]="selectedPeriod" optionLabel="v" optionValue="k"
+                                (onChange)="onChangePeriod($event); postsChart.refresh()"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="grid justify-content-center">
+    <div class="col-12 md:col-12">
+        <div class="card">
+            <h5>Topowi influencerzy</h5>
+            <div class="grid">
+                <div class="col-4">
+                    
+                </div>
+                <div class="col-4">
+                    <div class="col-4">
+                        <div class="flex justify-content-center">
+                            <p-chart type="doughnut" id="influ-chart" [data]="influData"  ></p-chart>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="panel">
+                        <div class="col-12 panel-title">Opcje</div>
+                        <div class="grid">
+                            <div class="col-4 label">Wybierz okres</div>
+                            <p-dropdown [options]="periods" [(ngModel)]="selectedPeriod" optionLabel="v" optionValue="k"
+                                (onChange)="onChangeInluPeriod($event); postsChart.refresh()"></p-dropdown>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

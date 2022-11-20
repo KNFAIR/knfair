@@ -14,9 +14,13 @@ import { SubjectsService } from '../../service/subjects.service';
 export class SubjectsComponent implements OnInit {
 
   subjects: Subcject[] = [];
+  filteredSubjects: Subcject[] = [];
   selectedSubcject: any;
   negativePosts: Post[] = [];
   positivePosts: Post[] = [];
+  nameFilter='';
+  nipFilter='';
+  typeFilter='';
 
   constructor(private service: SubjectsService,
               private subjService: SubjPostsService,
@@ -25,7 +29,8 @@ export class SubjectsComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAllProducts()
     .subscribe(response => {
-      this.subjects = response? response: [] ;
+      this.subjects = response? response: [];
+      this.filteredSubjects = this.subjects;
     })
   }
 
@@ -66,6 +71,20 @@ export class SubjectsComponent implements OnInit {
   onNegatives() {
     this.subjService.subj=this.selectedSubcject.data; 
     this.router.navigate(["subject","post","negative"])
+  }
+
+  onFilter(event: any){
+    console.log(event.target.value);
+    this.filteredSubjects=[]
+    this.subjects.filter(s => {
+      let result = true;
+      result = result && (this.nameFilter==='' || s.financialEntityName.includes(this.nameFilter));
+      result = result && (this.nipFilter==='' || s.financialEntityNip.includes(this.nipFilter));
+      result = result && (this.typeFilter==='' || s.financialEntityType.includes(this.typeFilter));
+      if(result) {
+        this.filteredSubjects.push(s);
+      }
+    })
   }
 
 }

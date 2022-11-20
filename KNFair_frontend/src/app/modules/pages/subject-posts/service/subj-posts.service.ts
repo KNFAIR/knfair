@@ -14,7 +14,6 @@ export class SubjPostsService {
   private baseUrl = `${environment.baseUrl}`;
   constructor(private http: HttpClient) { }
 
-
   public getPosts(subjectId: string): Observable<Post[][]> {
     // return this.http.get<Post[][]>(`${this.baseUrl}/find/groupByFinancialEntity/${subjectId}`);
     return of([

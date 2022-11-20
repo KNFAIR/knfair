@@ -46,6 +46,9 @@ import {DashboardComponent} from './modules/pages/dashboard/components/dashboard
 import { SubjectsComponent } from './modules/pages/subjects/components/subjects/subjects.component';
 import { SubjPosPostComponent } from './modules/pages/subject-posts/component/subj-pos-post/subj-pos-post.component';
 import { SubfNegPostComponent } from './modules/pages/subject-posts/component/subf-neg-post/subf-neg-post.component';
+import { AlertsComponent } from './modules/pages/alerts/components/alerts/alerts.component';
+import { PostsComponent } from './modules/pages/posts/components/posts/posts.component';
+import { PreventComponent } from './modules/pages/prevent/component/prevent/prevent.component';
 
 const route: Routes = [
     {
@@ -58,6 +61,9 @@ const route: Routes = [
             {path: 'subject/post', component: SettingsComponent},
             {path: 'subject/post/positive', component: SubjPosPostComponent},
             {path: 'subject/post/negative', component: SubfNegPostComponent},
+            {path: 'alerts', component: AlertsComponent},
+            {path: 'posts', component: PostsComponent},
+            {path: 'prevent', component: PreventComponent},
 
 
 

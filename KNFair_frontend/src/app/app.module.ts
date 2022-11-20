@@ -154,6 +154,9 @@ import {RegistrationModule} from "./modules/pages/registration/registration.modu
 import { SubjectsModule } from './modules/pages/subjects/subjects.module';
 import { SubjectPostsModule } from './modules/pages/subject-posts/subject-posts.module';
 import { DashboardModule } from './modules/pages/dashboard/dashboard.module';
+import { PostsModule } from './modules/pages/posts/posts.module';
+import { AlertsModule } from './modules/pages/alerts/alerts.module';
+import { PreventModule } from './modules/pages/prevent/prevent.module';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -259,6 +262,9 @@ FullCalendarModule.registerPlugins([
         SubjectsModule,
         SubjectPostsModule,
         DashboardModule,
+        PostsModule,
+        AlertsModule,
+        PreventModule,
     ],
     declarations: [
         DashboardDemoComponent,

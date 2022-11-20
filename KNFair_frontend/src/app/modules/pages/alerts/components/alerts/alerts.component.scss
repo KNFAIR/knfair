@@ -3,6 +3,10 @@
     border-radius: 5px;
     padding: 3em;
 }
+.right-panel{
+    border: 1px solid rgba(68, 72, 109, 0.17);
+    border-radius: 5px;
+}
 .panel-title{
     font-weight: bold;
     position: relative;
@@ -11,4 +15,10 @@
 .label{
     font-weight: bold;
     font-size: 0.8em;
+}
+.positive{
+    color: green;
+}
+.negative{
+    color: red;
 }

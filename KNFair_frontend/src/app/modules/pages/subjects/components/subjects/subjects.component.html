@@ -19,22 +19,40 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <p-table [value]="subjects" responsiveLayout="scroll" *ngIf="subjects" [paginator]="true"
+                    <p-table [value]="filteredSubjects" responsiveLayout="scroll" *ngIf="subjects" [paginator]="true"
                         [rows]="10" [(selection)]="selectedSubcject" dataKey="id" selectionMode="single"
                         (onRowSelect)="onRowSelect($event)">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th>
-                                    <div class="flex justify-content-center align-items-center">
-                                        Nazwa</div>
+                                    <div>Nazwa</div>
+                                    <div class="flex">
+                                        <span class="p-input-icon-left">
+                                            <i class="pi pi-search"></i>
+                                            <input type="text" pInputText [(ngModel)]="nameFilter" placeholder="Search" 
+                                            (input)="onFilter($event)"/>
+                                        </span>
+                                    </div>
                                 </th>
                                 <th>
-                                    <div class="flex justify-content-center align-items-center">
-                                        NIP</div>
+                                    <div>NIP</div>
+                                    <div class="flex">
+                                        <span class="p-input-icon-left">
+                                            <i class="pi pi-search"></i>
+                                            <input type="text" pInputText [(ngModel)]="nipFilter" placeholder="Search" 
+                                            (input)="onFilter($event)"/>
+                                        </span>
+                                    </div>
                                 </th>
                                 <th>
-                                    <div class="flex justify-content-center align-items-center">
-                                        Typ</div>
+                                    <div>Typ</div>
+                                    <div class="flex">
+                                        <span class="p-input-icon-left">
+                                            <i class="pi pi-search"></i>
+                                            <input type="text" pInputText [(ngModel)]="typeFilter" placeholder="Search" 
+                                            (input)="onFilter($event)"/>
+                                        </span>
+                                    </div>
                                 </th>
                             </tr>
                         </ng-template>
