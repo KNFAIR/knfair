@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { PreventService } from '../../service/prevent.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class PreventComponent implements OnInit {
   edition = true;
   positive: Boolean;
   content: string;
+  uploadUrl=`${environment.baseUrl}/upload`
 
   constructor(private service: PreventService) { }
 

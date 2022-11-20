@@ -13,7 +13,7 @@
                     <div class="col-12 center">Lub</div>
                     <div class="col-4">Załaduj zdjęcie lub wideo:</div>
                     <div class="col-8">
-                        <p-fileUpload mode="basic" name="subjects[]" url="./upload.php"
+                        <p-fileUpload mode="basic" name="subjects[]" url="{{uploadUrl}}"
                             (onUpload)="onBasicUpload($event)"></p-fileUpload>
                     </div>
                     <div class="col-12 center">
