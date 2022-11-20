@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subcject } from '../../../subjects/model/subcject';
+import { SubjectsService } from '../../../subjects/service/subjects.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  subjects: Subcject[];
+  selectedSubject: Subcject;
+
+  constructor(private service: SubjectsService) { }
 
   ngOnInit(): void {
+    this.service.getAllProducts().subscribe(response => {
+      this.subjects=response;
+    })
   }
 
 }

@@ -153,6 +153,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {RegistrationModule} from "./modules/pages/registration/registration.module";
 import { SubjectsModule } from './modules/pages/subjects/subjects.module';
 import { SubjectPostsModule } from './modules/pages/subject-posts/subject-posts.module';
+import { DashboardModule } from './modules/pages/dashboard/dashboard.module';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -257,6 +258,7 @@ FullCalendarModule.registerPlugins([
         RegistrationModule,
         SubjectsModule,
         SubjectPostsModule,
+        DashboardModule,
     ],
     declarations: [
         DashboardDemoComponent,

@@ -1,1 +1,13 @@
-<p>dashboard works!</p>
+<div class="grid justify-content-center">
+    <div class="col-12 md:col-12">
+        <div class="card">
+            <div class="grid">
+                <div class="col-8"></div>
+                <div class="col-4">
+                    <p-dropdown [options]="subjects" [(ngModel)]="selectedSubject" optionLabel="financialEntityName"
+                    filter="true" filterBy="selectedSubject"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
