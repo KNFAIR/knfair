@@ -3,13 +3,17 @@ package pl.hackyeah.msmfa.socialPost;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -48,5 +52,12 @@ public class SocialPostEntity {
     
     @ManyToMany
     private Set<FinancialEntity> logos;
+    
+    @Column
+    private String ocr;
 
+    
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+    private Set<FlagReason> reasons;
 }

@@ -3,10 +3,17 @@ package pl.hackyeah.msmfa.socialPost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.*;
 
+import pl.hackyeah.msmfa.service.FileService;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 @RestController
 @RequestMapping("/socialPosts")
@@ -14,6 +21,9 @@ public class SocialPostController {
 
     @Autowired
     private final SocialPostService socialPostService;
+    
+    @Autowired
+    private FileService fileService;
 
     public SocialPostController(SocialPostService socialPostService) {
         this.socialPostService = socialPostService;
@@ -41,17 +51,60 @@ public class SocialPostController {
     }
     @CrossOrigin
     @GetMapping("/find/autoVerification")
-    public List<List<SocialPostEntity>> getPostsByAutoVerification() {
-        List<List<SocialPostEntity>> list = new ArrayList<>();
-        list.add(socialPostService.findByAutoVerificationTrue());
-        list.add(socialPostService.findByAutoVerificationFalse());
+    public List<List<SocialPostEntityMiniDTO>> getPostsByAutoVerification() {
+        List<SocialPostEntityMiniDTO> listT = new ArrayList<>();
+        List<SocialPostEntityMiniDTO> listF = new ArrayList<>();
+        
+        for(SocialPostEntity e : socialPostService.findByAutoVerificationTrue()) {
+        	listT.add(copyToDTO(e));
+        }
+        for(SocialPostEntity e : socialPostService.findByAutoVerificationFalse()) {
+        	listF.add(copyToDTO(e));
+        }
+        List<List<SocialPostEntityMiniDTO>> list = new ArrayList<>();
+        list.add(listT);
+        list.add(listF);
         return list;
     }
 
     @CrossOrigin
     @GetMapping("/find/{id}")
-    public SocialPostEntity getSocialPostById(@PathVariable("id") Long id) {
-        return socialPostService.findById(id);
+    @Transactional
+    public SocialPostEntityMiniDTO getSocialPostById(@PathVariable("id") Long id) {
+    	SocialPostEntity e = socialPostService.findById(id);
+        return copyToDTO(e);
+    }
+
+    @CrossOrigin
+    @GetMapping("/find/by/financialEntity/{id}")
+    @Transactional
+    public List<SocialPostEntityMiniDTO> getSocialPostByFinancialEntityId(@PathVariable("id") Long id) {
+    	List<SocialPostEntity> l = socialPostService.findByFinancialInstitutionId(id);
+        List<SocialPostEntityMiniDTO> list = new ArrayList<>();
+		for(SocialPostEntity e : l) {
+        	list.add(copyToDTO(e));
+        }
+
+    	return list;
+    }
+
+    private SocialPostEntityMiniDTO copyToDTO(SocialPostEntity e) {
+    	SocialPostEntityMiniDTO dto = new SocialPostEntityMiniDTO();
+    	
+    	dto.setId(e.getId());
+    	dto.setAutoVerification(e.getAutoVerification());
+    	dto.setFacebookPostUrl(e.getFacebookPostUrl());
+    	dto.setManualVerification(e.getManualVerification());
+    	dto.setPostCreatedDate(e.getPostCreatedDate());
+    	dto.setReasons(e.getReasons());
+    	return dto;
+    }
+
+	@CrossOrigin
+    @GetMapping("/find/{id}/image")
+    public void getSocialPostImageById(@PathVariable("id") Long id, HttpServletResponse response) throws IOException {
+        response.setContentType("image/png");
+        fileService.copyTo(id, response.getOutputStream());
     }
 
     @CrossOrigin
