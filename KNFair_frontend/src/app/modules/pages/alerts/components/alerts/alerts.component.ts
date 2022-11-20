@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { SubjPostsService } from '../../../subject-posts/service/subj-posts.service';
 import { Post } from '../../../subjects/model/post';
 import { Subcject } from '../../../subjects/model/subcject';
@@ -29,7 +30,7 @@ export class AlertsComponent implements OnInit {
   }
 
   onChangeSubject(event: any) {
-    this.service.getAllPosts(event.data).subscribe(response => {
+    this.service.getAllPosts(event.value).subscribe(response => {
       this.posts = [];
       response[1].forEach(p => this.posts.push(p));
       response[0].forEach(p => this.posts.push(p));
@@ -42,6 +43,10 @@ export class AlertsComponent implements OnInit {
     this.postService.updateManual(this.selectedPost).subscribe(response => {
       console.log('ok');
     });
+  }
+
+  getImageUrl() {
+    return `${environment.baseUrl}/post/${this.selectedPost.id}/image`
   }
 
 }

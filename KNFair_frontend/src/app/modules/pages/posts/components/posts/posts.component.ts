@@ -31,7 +31,7 @@ export class PostsComponent implements OnInit {
   }
 
   onChangeSubject(event: any) {
-    this.service.getAllPosts(event.data).subscribe(response => {
+    this.service.getAllPosts(event.value).subscribe(response => {
       this.posts = [];
       response[1].forEach(p => this.posts.push(p));
       response[0].forEach(p => this.posts.push(p));
