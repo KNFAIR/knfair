@@ -6,7 +6,7 @@
             <div class="grid">
                 <div class="col-6">
                     <div class="panel">
-                        <div class="col-12 panel-title">Opcje</div>
+                        <div class="col-12 panel-title"></div>
                         <div class="grid">
                             <div class="col-4 label">Wybierz podmiot</div>
                             <div class="col-8">
@@ -37,7 +37,7 @@
                 <div class="col-5 grid">
                     <div class="col-12 right-panel grid" *ngIf="selectedPost">
                         <div class="col-12">
-                            <img src="getImageUrl()" alt="image">
+                            <img src="{{getImageUrl()}}" alt="image">
                         </div>
                         <div class="col-4 label">Data:</div>
                         <div class="col-8">{{selectedPost.postCreatedDate}}</div>

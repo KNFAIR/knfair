@@ -46,7 +46,7 @@ export class AlertsComponent implements OnInit {
   }
 
   getImageUrl() {
-    return `${environment.baseUrl}/post/${this.selectedPost.id}/image`
+    return `${environment.baseUrl}/socialPosts/find/${this.selectedPost.id}/image`
   }
 
 }

@@ -1,12 +1,12 @@
 <div class="grid justify-content-center">
     <div class="col-12 md:col-12">
         <div class="card">
-            <h5>Alerty - posty bez weryfikacji manualnej</h5>
+            <h5>Lista postów</h5>
 
             <div class="grid">
                 <div class="col-6">
                     <div class="panel">
-                        <div class="col-12 panel-title">Opcje</div>
+                        <div class="col-12 panel-title"></div>
                         <div class="grid">
                             <div class="col-4 label">Wybierz podmiot</div>
                             <div class="col-8">
@@ -37,7 +37,7 @@
                 <div class="col-5 grid">
                     <div class="col-12 right-panel grid" *ngIf="selectedPost">
                         <div class="col-12">
-                            <img src="getImageUrl()" alt="image">
+                            <img src="{{getImageUrl()}}" alt="image">
                         </div>
                         <div class="col-4 label">Data:</div>
                         <div class="col-7">{{selectedPost.postCreatedDate}}</div>
@@ -46,7 +46,7 @@
                         <div class="col-7 negative" *ngIf="!selectedPost.autoVerification">Niezgodny</div>
                         <div class="col-4 label">Znalezione frazy:</div>
                         <div class="col-7">{{selectedPost.reason}}</div>
-                        <div class="col-4 label">Wybierz status manualny:</div>
+                        <div class="col-4 label">Status manualny:</div>
                         <div class="col-7 positive" *ngIf="selectedPost.manualVerification===true">Zgodny</div>
                         <div class="col-7 negative" *ngIf="selectedPost.manualVerification===false">Niezgodny</div>
                         <div class="col-7 absent" *ngIf="selectedPost.manualVerification==null">Brak</div>
