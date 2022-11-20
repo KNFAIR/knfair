@@ -9,7 +9,9 @@ public class TextClassificationService {
 	
 	public boolean isScam(String text) {
 		for(String s : strong) {
-			return text.contains(s);
+			if (text.contains(s)) {
+				return true;
+			}
 		}
 		return false;
 	}
