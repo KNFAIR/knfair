@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.servlet.function.EntityResponse;
+import pl.hackyeah.msmfa.dto.VerificationDataDto;
 import pl.hackyeah.msmfa.service.FileService;
 
 import java.io.IOException;
@@ -68,10 +70,15 @@ public class SocialPostController {
     }
 
     @CrossOrigin
+    @PutMapping("/update")
+    public void updatePost(@RequestBody SocialPostEntity post) {
+        socialPostService.update(post);
+    }
+
+    @CrossOrigin
     @GetMapping("/find/groupByFinancialEntity/{financialEntityId}")
-    public ResponseEntity<List<SocialPostEntity>> getPostsByFinancialEntityId(@PathVariable("financialEntityId") Long financialEntityId) {
-        List<SocialPostEntity> socialPosts = socialPostService.findPostByFinancialEntityId(financialEntityId);
-        return new ResponseEntity<>(socialPosts, HttpStatus.OK);
+    public List<List<SocialPostEntity>> getPostsByFinancialEntityId(@PathVariable("financialEntityId") Long financialEntityId) {
+        return socialPostService.getPostsNotManualVericated(financialEntityId);
     }
 
     @CrossOrigin
@@ -119,6 +126,13 @@ public class SocialPostController {
     public ResponseEntity<SocialPostEntity> addSocialPost(@RequestBody SocialPostEntity socialPost) {
         SocialPostEntity newSocialPost = socialPostService.addSocialPost(socialPost);
         return new ResponseEntity<>(newSocialPost, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin
+    @PostMapping("/verify")
+    public ResponseEntity<Boolean> verifyContent(@RequestBody VerificationDataDto dto) {
+        //TODO Tomek
+        return ResponseEntity.ok(true);
     }
 
 }

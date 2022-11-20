@@ -20,7 +20,7 @@ export class SubjectsService {
   }
 
   getAllPosts(subjectId: string): Observable<Post[][]> {
-    return this.http.get<Post[][]>(`${this.baseUrl}/find/autoVerification`);
+    return this.http.get<Post[][]>(`${this.baseUrl}/socialPosts/find/groupByFinancialEntity/${subjectId}`);
   }
 
  

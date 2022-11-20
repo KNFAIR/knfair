@@ -15,46 +15,11 @@ export class SubjPostsService {
   constructor(private http: HttpClient) { }
 
   public getPosts(subjectId: string): Observable<Post[][]> {
-    // return this.http.get<Post[][]>(`${this.baseUrl}/find/groupByFinancialEntity/${subjectId}`);
-    return of([
-      [
-        {id:'1',
-        postCreatedDate:'12-12-2022',
-        facebookPostUrl: 'url1',
-        manualVerification: null,
-        autoVerification: true,
-        reason:''
-      },
-      {id:'2',
-      postCreatedDate:'12-12-2022',
-        facebookPostUrl: 'url2',
-        manualVerification: null,
-        autoVerification: true,
-        reason:''
-      }
-      ],
-      [
-        {id:'3',
-        postCreatedDate:'12-12-2022',
-        facebookPostUrl: 'url3',
-        manualVerification: null,
-        autoVerification: false,
-        reason:''
-      },
-      {id:'4',
-      postCreatedDate:'12-12-2022',
-        facebookPostUrl: 'url4',
-        manualVerification: null,
-        autoVerification: false,
-        reason:''
-      }
-      ]
-    ]);
+    return this.http.get<Post[][]>(`${this.baseUrl}/socialPosts/find/groupByFinancialEntity/${subjectId}`);
   }
 
   public updateManual(post: Post): any {
-    // return this.http.put(`${this.baseUrl}/post`, post);
-    return of();
+    return this.http.put(`${this.baseUrl}/socialPosts/update`, post);
   }
 
   
